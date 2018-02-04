@@ -1,0 +1,66 @@
+h1{
+	text-align: center;
+	font-size: 50px;
+}
+
+footer{
+	margin-top: 100px;
+}
+
+
+
+
+/*           S U N R I S E      &      S U N S E T      S T Y L I N G           */ 
+
+
+.js-sunrise-conatiner,
+.js-sunset-conatiner{
+	border: solid 2px grey;
+}
+
+
+.js-sunrise-img,
+.js-sunset-img{
+	width: 75px;
+	height:75px;
+}
+
+
+
+
+
+
+
+
+
+
+/*           M A P     S T Y L I N G           */ 
+#map{
+    height: 400px;
+    width: 100%;
+    border: 2px solid grey;
+    border-radius: 5px;
+    margin-bottom: 30px;
+}
+
+
+
+
+
+/*           W E A T H E R     S T Y L I N G           */
+
+.js-daily-forecast,
+.js-current-weather{
+	border: 2px solid grey; 
+}
+
+.js-weather-icon{
+
+}
+
+.js-forecast-description,
+.js-crntweather-description{
+	font-size: 1.5em;
+}
+
+

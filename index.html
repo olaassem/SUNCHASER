@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<title>SUNCHASER</title>
+	<meta charset="UTF-8">
+	<meta name="author" content="Ola Assem"/>
+	
+	<!-- Responsive viewport tag, tells small screens that it's responsive -->
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+	
+	<!-- Stylesheets -->
+	<link rel="stylesheet" type="text/css" href="grid.css"/>
+	<link rel="stylesheet" type="text/css" href="index.css"/>
+</head>
+
+
+<body>
+
+
+	<div class="row">
+		<div class="col-12">
+			<div class="container">
+
+				<heading role="banner">
+					<h1>SUNCHASER</h1>
+				</heading>
+
+				
+
+
+				<main role="main">
+
+
+
+				<form role="form" class="js-search-form" action="#" method='#'>
+					<label for="query"></label>
+					<input type="text" id="query" name="trail-query" placeholder="Search Trails"/><br/>
+					<button type="submit" class="js-submit">Find Trails</button>
+				</form>
+
+
+
+					<h2>Current Time</h2>
+					<div class="js-current-time"></div>
+
+
+					<h2>Sunrise and Sunset</h2>
+					<div class="js-sunrise-sunset"></div>
+
+
+					
+
+					<h2>Current Weather and 12 Hour Forecast</h2>
+
+					<div id="js-current-weather-container"> </div>
+
+					<div id="js-forecast-container" class="row"> </div>
+
+					<div id="js-pictures-container"></div>
+
+					<div id="map"> </div>
+
+				</main>
+			</div>
+		</div>	
+	</div>	
+
+
+	<footer role='contentinfo'>
+		<p>OLA ASSEM | 2018</p>
+	</footer>
+
+
+
+	<!-- Google Maps Script 
+	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6ECb06GHjgfRQjrOJKy6tQqScBimbFmA&callback=initMap"></script>-->
+
+	<!-- jQuery Script -->
+	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
+	          integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+	          crossorigin="anonymous"></script>
+
+	<!-- JavaScript Script -->
+	 <script type="text/javascript" src="index.js"></script>
+	<!--<script type="text/javascript" src="googlemaps.js"></script>-->
+</body>
+
+</html>
