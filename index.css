@@ -49,18 +49,9 @@ footer{
 
 /*           W E A T H E R     S T Y L I N G           */
 
-.js-daily-forecast,
-.js-current-weather{
-	border: 2px solid grey; 
+/*  HOURLY FORECAST  */
+
+.js-12hourforecast{
+ 	border: 2px solid grey;
 }
-
-.js-weather-icon{
-
-}
-
-.js-forecast-description,
-.js-crntweather-description{
-	font-size: 1.5em;
-}
-
 

@@ -1,8 +1,8 @@
 //* * * * *      C O D E      O R D E R        * * * * * 
-// 1.constants
-// 2. sunset sunrise
-// 3. hiking trails
-// 4. weather
+// 1. constants
+// 2. wunderground api: sunset/sunrise | current time | 12 hr forecast.
+// 3. weather
+// 4. hiking trails
 // 5. google maps
 // 6. pictures
 
@@ -16,55 +16,7 @@ let siteLongitude = -77.263568;  //will be dynamically set to clicked site lat
 
  
 
-
-
-
-
-//     S U N S E T      A N D       S U N R I S E       C O D E     //
-/*
-const SUNSETSUNRISE_ENDPOINT = 'https://api.sunrise-sunset.org/json';
-
-
-function getSunriseSunsetAPIData(){
-	let params ={
-		lat: siteLatitude,
-		lng: siteLongitude,
-		date: "today"
-	};
-	$.getJSON(SUNSETSUNRISE_ENDPOINT, params, function( data ){
-	}).done(function ( data ){
-		console.log( data )
-		displaySunsetSunrise(data.results)
-	}).fail(function ( data ){
-		alert('getSunriseSunsetAPIData function Ajax Call Failed!')
-	});
-}
-
-getSunriseSunsetAPIData();
-
-
-//Display Sunrise/Sunset Times
-function displaySunsetSunrise( suntimes ){
-	$('.js-sunrise-sunset').html(`
-		<div class=js-sunrise-conatiner>	
-			<img class="js-sunrise-img" src="https://png.icons8.com/metro/1600/sunrise.png" alt="sunrise icon"></img>
-			<h3>Sunrise</h3>
-			<h3 class="js-sunrise-time">${suntimes.sunrise}</h3>
-		</div>	
-		<div class=js-sunset-conatiner>	
-			<img class="js-sunset-img" src="https://png.icons8.com/metro/1600/sunset.png" alt="sunset icon"></img>
-			<h3>Sunset</h3>
-			<h3 class="js-sunset-time">${suntimes.sunset}</h3>
-		</div	
-		`
-	);
-}
-
-*/
-
-//
-
-//  W U N D E R G R O U N D   S U N S E T / S U N R I S E   &   C U R R E N T   T I M E    C O D E  //
+//  WUNDERGROUND API:  SUNSET/SUNRISE | CURRENT TIME | 12 HOUR FORECAST CODE  //
 
 const SUNSETSUNRISE_ENDPOINT = 'http://api.wunderground.com/api/';
 const SUNSETSUNRISE_API_KEY = '4259db9143b819d5';
@@ -93,7 +45,6 @@ function displayCurrentTime( timenow ){
 }
 
 
-
 //Display Sunrise/Sunset Times
 function displaySunsetSunrise( suntimes ){
 	$('.js-sunrise-sunset').html(`
@@ -112,6 +63,40 @@ function displaySunsetSunrise( suntimes ){
 }
  
 
+//Get Hourly Forecast Data
+function getHourlyAPIData(){
+	$.getJSON( ("http://api.wunderground.com/api/4259db9143b819d5/hourly/q/"+siteLatitude+","+siteLongitude+".json"), function( data ){
+	}).done(function ( data ){
+		console.log( data )
+		displayHourlyForecast( data);
+	}).fail(function ( data ){
+		alert('getHourlyAPIData function Ajax Call Failed!')
+	});
+}
+
+getHourlyAPIData();
+
+//Display Hourly Forecast 
+function displayHourlyForecast( forecast ){
+	for(let i = 0; i < 12; i++){
+
+   		$('.js-forecast-container').append(`
+
+
+ 		<div class="js-12hourforecast">
+
+			<p class="js-hourly-hour">${forecast.hourly_forecast[i].FCTTIME.hour}:${forecast.hourly_forecast[i].FCTTIME.min}</p>
+			<p class="js-weekday">${forecast.hourly_forecast[i].FCTTIME.weekday_name_abbrev}</p>
+			<img class="js-forecast-icon" src=${forecast.hourly_forecast[i].icon_url} alt="${forecast.hourly_forecast[i].icon}"></img>
+			<p class="js-forecast-condition">${forecast.hourly_forecast[i].condition}</p>
+			<p class="js-hourly-temp">${forecast.hourly_forecast[i].temp.english}&#176;F</p>
+			<p class="js-hourly-precip">PRECIP ${forecast.hourly_forecast[i].temp.english}%</p>
+			<p class="js-hourly-humidity">HUMIDITY ${forecast.hourly_forecast[i].humidity}%</p>
+			<p class="js-hourly-wind">WIND ${forecast.hourly_forecast[i].wdir.dir} ${forecast.hourly_forecast[i].wspd.english} mph</p>
+		</div>
+		`)
+	}
+}
 
 
 
@@ -119,9 +104,153 @@ function displaySunsetSunrise( suntimes ){
 
 
 
+//     W E A T H E R B I T . I O       C O D E     //
+/*
+const WEATHERBIT_HRLY_FORECAST_ENDPOINT = "https://api.weatherbit.io/v2.0/forecast/hourly";
+const WEATHERBIT_FORECAST_ENDPOINT = "http://api.weatherbit.io/v1.0/forecast/daily";
+const WEATHERBIT_CRNT_WTHR_ENDPOINT = "https://api.weatherbit.io/v2.0/current"
+const WEATHERBIT_API_KEY = "62fe599ba6b44ae88a7e4e4319558f4c";
 
 
 
+//Call to Weather Forecast API data
+function getHourlyForecastData(){
+	let params = {
+		lat: siteLatitude,
+		lon: siteLongitude,
+		units: "I",
+		hours: 12,
+		key: WEATHERBIT_API_KEY
+	}
+
+	$.getJSON( WEATHERBIT_HRLY_FORECAST_ENDPOINT, params, function( forecast ){
+		//success
+	}).done( function ( forecast ){
+		console.log( forecast.data );
+		////INSERT DISPLAY TRAILS FUNCTION   displayHourlyForecast( forecast.data );
+		//failure
+	}).fail(function(){
+		alert("getHourlyForecastData Ajax call failed!");
+	});
+}
+
+getHourlyForecastData();
+
+/*
+//Display Weather Forecast Results
+function displayHourlyForecast( forecast ){
+	let forecastOutput = forecast.map(item => 
+		renderWeatherForecast(item)).join('');
+        $('#js-forecast-container').html(forecastOutput);
+}
+
+//Render Weather Forecast Results to the DOM
+function renderWeatherForecast ( item ){
+	return `
+		<div class="col-3">
+    		<div class="js-daily-forecast">
+            	<h3 class="js-forecast-date">${item.datetime}</h3>
+            	<img class="js-weather-icon" src="https://weatherbit.io/static/img/icons/${item.weather.icon}.png" alt="${item.weather.description}"></img>
+			    <p class="js-forecast-description">${item.weather.description}</p>
+			    <p class="js-forecast-hightemp">H ${item.max_temp.toFixed()} &#176;F</p>
+			    <p class="js-forecast-lowtemp">L ${item.min_temp.toFixed()} &#176;F</p>
+			    <p class="js-forecast-humidity">Humidity ${item.rh.toFixed()}&#37;</p>
+			    <p class="js-forecast-percipitation">Chance of Percipitation ${item.pop.toFixed()}%</p>
+			</div>    
+        </div>
+
+	  `
+}
+
+
+
+//Call to Weather Forecast API data
+function getWeatherBitData(){
+	let params = {
+		lat: siteLatitude,
+		lon: siteLongitude,
+		units: "I",
+		days: 5,
+		key: WEATHERBIT_API_KEY
+	}
+
+	$.getJSON( WEATHERBIT_FORECAST_ENDPOINT, params, function( forecast ){
+		//success
+	}).done( function ( forecast ){
+		console.log( forecast.data );
+		displayForecast( forecast.data );
+		//failure
+	}).fail(function(){
+		alert("Weatherbit Forecast Ajax call failed!");
+	});
+}
+
+getWeatherBitData();
+
+
+//Display Weather Forecast Results
+function displayForecast( forecast ){
+	let forecastOutput = forecast.map(item => 
+		renderWeatherForecast(item)).join('');
+        $('#js-forecast-container').html(forecastOutput);
+}
+
+//Render Weather Forecast Results to the DOM
+function renderWeatherForecast ( item ){
+	return `
+		<div class="col-3">
+    		<div class="js-daily-forecast">
+            	<h3 class="js-forecast-date">${item.datetime}</h3>
+            	<img class="js-weather-icon" src="https://weatherbit.io/static/img/icons/${item.weather.icon}.png" alt="${item.weather.description}"></img>
+			    <p class="js-forecast-description">${item.weather.description}</p>
+			    <p class="js-forecast-hightemp">H ${item.max_temp.toFixed()} &#176;F</p>
+			    <p class="js-forecast-lowtemp">L ${item.min_temp.toFixed()} &#176;F</p>
+			    <p class="js-forecast-humidity">Humidity ${item.rh.toFixed()}&#37;</p>
+			    <p class="js-forecast-percipitation">Chance of Percipitation ${item.pop.toFixed()}%</p>
+			</div>    
+        </div>
+
+	  `
+}
+
+//Call to Current Weather API data
+function getCurrentWeatherData(){
+	let params = {
+		lat: siteLatitude,
+		lon: siteLongitude,
+		units: "I",
+		key: WEATHERBIT_API_KEY
+	}
+	$.getJSON( WEATHERBIT_CRNT_WTHR_ENDPOINT, params, function( crntweather ){
+		//success
+	}).done( function ( crntweather ){
+		console.log( crntweather.data );
+		displayCurrentWeather( crntweather.data[0] );
+		//i want the first current weather object in the array called data
+		
+		//failure
+	}).fail(function(){
+		alert("Weatherbit Current Weather Ajax call failed!");
+	});
+}
+getCurrentWeatherData();
+	
+
+function displayCurrentWeather( crntweather ){
+	$('#js-current-weather-container').html(`
+
+			<div class="col-3">
+	    		<div class="js-current-weather">
+
+	            	<h3 class="js-crntweather-title">Current Weather</h3>
+					<img class="js-weather-icon" src="https://weatherbit.io/static/img/icons/${crntweather.weather.icon}.png" alt="${crntweather.weather.description}"></img>
+					<p class="js-crntweather-description">${crntweather.weather.description}</p>
+					<p class="js-crntweather-temp">${crntweather.temp} &#176;F</p>
+					<p class="js-forecast-humidity">Humidity ${crntweather.rh.toFixed()}&#37;</p>
+				</div>    
+            </div>
+	  `);
+}
 
 
 
@@ -165,15 +294,6 @@ getHikingProjectData();
   black -- Difficult: 15% grade, large obstacles, possible scrambling or climbing
   black black -- Extremely Difficult: 20% grade, 15+" obstacles, many harder sections
 */
-
-
-
-
-
-
-
-
-
 
 
 
@@ -244,175 +364,6 @@ transit.station.rail selects rail stations.
 
 
 
-//     W E A T H E R B I T . I O       C O D E     //
-
-const WEATHERBIT_HRLY_FORECAST_ENDPOINT = "https://api.weatherbit.io/v2.0/forecast/hourly";
-const WEATHERBIT_FORECAST_ENDPOINT = "http://api.weatherbit.io/v1.0/forecast/daily";
-const WEATHERBIT_CRNT_WTHR_ENDPOINT = "https://api.weatherbit.io/v2.0/current"
-const WEATHERBIT_API_KEY = "62fe599ba6b44ae88a7e4e4319558f4c";
-
-
-
-//Call to Weather Forecast API data
-function getHourlyForecastData(){
-	let params = {
-		lat: siteLatitude,
-		lon: siteLongitude,
-		units: "I",
-		hours: 12,
-		key: WEATHERBIT_API_KEY
-	}
-
-	$.getJSON( WEATHERBIT_HRLY_FORECAST_ENDPOINT, params, function( forecast ){
-		//success
-	}).done( function ( forecast ){
-		console.log( forecast.data );
-		////INSERT DISPLAY TRAILS FUNCTION   displayHourlyForecast( forecast.data );
-		//failure
-	}).fail(function(){
-		alert("getHourlyForecastData Ajax call failed!");
-	});
-}
-
-getHourlyForecastData();
-
-/*
-//Display Weather Forecast Results
-function displayHourlyForecast( forecast ){
-	let forecastOutput = forecast.map(item => 
-		renderWeatherForecast(item)).join('');
-        $('#js-forecast-container').html(forecastOutput);
-}
-
-//Render Weather Forecast Results to the DOM
-function renderWeatherForecast ( item ){
-	return `
-		<div class="col-3">
-    		<div class="js-daily-forecast">
-            	<h3 class="js-forecast-date">${item.datetime}</h3>
-            	<img class="js-weather-icon" src="https://weatherbit.io/static/img/icons/${item.weather.icon}.png" alt="${item.weather.description}"></img>
-			    <p class="js-forecast-description">${item.weather.description}</p>
-			    <p class="js-forecast-hightemp">H ${item.max_temp.toFixed()} &#176;F</p>
-			    <p class="js-forecast-lowtemp">L ${item.min_temp.toFixed()} &#176;F</p>
-			    <p class="js-forecast-humidity">Humidity ${item.rh.toFixed()}&#37;</p>
-			    <p class="js-forecast-percipitation">Chance of Percipitation ${item.pop.toFixed()}%</p>
-			</div>    
-        </div>
-
-	  `
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//Call to Weather Forecast API data
-function getWeatherBitData(){
-	let params = {
-		lat: siteLatitude,
-		lon: siteLongitude,
-		units: "I",
-		days: 5,
-		key: WEATHERBIT_API_KEY
-	}
-
-	$.getJSON( WEATHERBIT_FORECAST_ENDPOINT, params, function( forecast ){
-		//success
-	}).done( function ( forecast ){
-		console.log( forecast.data );
-		displayForecast( forecast.data );
-		//failure
-	}).fail(function(){
-		alert("Weatherbit Forecast Ajax call failed!");
-	});
-}
-
-getWeatherBitData();
-
-
-//Display Weather Forecast Results
-function displayForecast( forecast ){
-	let forecastOutput = forecast.map(item => 
-		renderWeatherForecast(item)).join('');
-        $('#js-forecast-container').html(forecastOutput);
-}
-
-//Render Weather Forecast Results to the DOM
-function renderWeatherForecast ( item ){
-	return `
-		<div class="col-3">
-    		<div class="js-daily-forecast">
-            	<h3 class="js-forecast-date">${item.datetime}</h3>
-            	<img class="js-weather-icon" src="https://weatherbit.io/static/img/icons/${item.weather.icon}.png" alt="${item.weather.description}"></img>
-			    <p class="js-forecast-description">${item.weather.description}</p>
-			    <p class="js-forecast-hightemp">H ${item.max_temp.toFixed()} &#176;F</p>
-			    <p class="js-forecast-lowtemp">L ${item.min_temp.toFixed()} &#176;F</p>
-			    <p class="js-forecast-humidity">Humidity ${item.rh.toFixed()}&#37;</p>
-			    <p class="js-forecast-percipitation">Chance of Percipitation ${item.pop.toFixed()}%</p>
-			</div>    
-        </div>
-
-	  `
-}
-
-
-//Call to Current Weather API data
-function getCurrentWeatherData(){
-	let params = {
-		lat: siteLatitude,
-		lon: siteLongitude,
-		units: "I",
-		key: WEATHERBIT_API_KEY
-	}
-	$.getJSON( WEATHERBIT_CRNT_WTHR_ENDPOINT, params, function( crntweather ){
-		//success
-	}).done( function ( crntweather ){
-		console.log( crntweather.data );
-		displayCurrentWeather( crntweather.data[0] );
-		//i want the first current weather object in the array called data
-		
-		//failure
-	}).fail(function(){
-		alert("Weatherbit Current Weather Ajax call failed!");
-	});
-}
-getCurrentWeatherData();
-	
-
-function displayCurrentWeather( crntweather ){
-	$('#js-current-weather-container').html(`
-
-			<div class="col-3">
-	    		<div class="js-current-weather">
-
-	            	<h3 class="js-crntweather-title">Current Weather</h3>
-					<img class="js-weather-icon" src="https://weatherbit.io/static/img/icons/${crntweather.weather.icon}.png" alt="${crntweather.weather.description}"></img>
-					<p class="js-crntweather-description">${crntweather.weather.description}</p>
-					<p class="js-crntweather-temp">${crntweather.temp} &#176;F</p>
-					<p class="js-forecast-humidity">Humidity ${crntweather.rh.toFixed()}&#37;</p>
-				</div>    
-            </div>
-	  `);
-}
 
 
 
@@ -455,7 +406,47 @@ getFlickrApiData();
 */
 //-------------------------------------------------------------
 
+//     S U N S E T      A N D       S U N R I S E       C O D E     //
+/*
+const SUNSETSUNRISE_ENDPOINT = 'https://api.sunrise-sunset.org/json';
 
+
+function getSunriseSunsetAPIData(){
+	let params ={
+		lat: siteLatitude,
+		lng: siteLongitude,
+		date: "today"
+	};
+	$.getJSON(SUNSETSUNRISE_ENDPOINT, params, function( data ){
+	}).done(function ( data ){
+		console.log( data )
+		displaySunsetSunrise(data.results)
+	}).fail(function ( data ){
+		alert('getSunriseSunsetAPIData function Ajax Call Failed!')
+	});
+}
+
+getSunriseSunsetAPIData();
+
+
+//Display Sunrise/Sunset Times
+function displaySunsetSunrise( suntimes ){
+	$('.js-sunrise-sunset').html(`
+		<div class=js-sunrise-conatiner>	
+			<img class="js-sunrise-img" src="https://png.icons8.com/metro/1600/sunrise.png" alt="sunrise icon"></img>
+			<h3>Sunrise</h3>
+			<h3 class="js-sunrise-time">${suntimes.sunrise}</h3>
+		</div>	
+		<div class=js-sunset-conatiner>	
+			<img class="js-sunset-img" src="https://png.icons8.com/metro/1600/sunset.png" alt="sunset icon"></img>
+			<h3>Sunset</h3>
+			<h3 class="js-sunset-time">${suntimes.sunset}</h3>
+		</div	
+		`
+	);
+}
+
+*/
 
 
 
