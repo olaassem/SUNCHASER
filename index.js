@@ -7,11 +7,15 @@
 
 
 
-//     C O N S T A N T S   
-let siteLatitude = "";  //will be dynamically set to clicked site lat
-let siteLongitude ="";  //will be dynamically set to clicked site lat
+//    L A T / L O N G     G L O B A L      V A R I A B L E S    //
+
+let siteLatitude = 38.7934466;  //will be dynamically set to clicked site lat
+
+let siteLongitude = -77.27165049999996;  //will be dynamically set to clicked site lat
 
 
+
+//    G O O G L E      P L A C E S       C O D E    //     
 
 let placeSearch;
 let autocomplete; 
@@ -75,7 +79,7 @@ function fillInAddress() {
 
 
 
- /*
+
 
 //  WUNDERGROUND API:  SUNSET/SUNRISE | CURRENT TIME | 12 HOUR FORECAST CODE  //
 
@@ -159,8 +163,6 @@ function displayHourlyForecast( forecast ){
 
 
 
-
-
 //     H I K I N G       P R O J E C T       C O D E     //
 
 const HIKINGPROJECT_ENDPOINT = 'https://www.hikingproject.com/data/get-trails?';
@@ -228,7 +230,7 @@ function displayAllTrails( trails ){
 
 
 /*
-//     G O O G L E       M A P S       C O D E     //
+//  !!!!!!!!!!DO NOT UNCOMMENT!!!!!!!!   G O O G L E       M A P S       C O D E     //
 
 
 //  Google Maps Marker Icons
@@ -284,13 +286,8 @@ transit.station.rail selects rail stations.
 */
 
 
-
-
-
-
-
 /*
-//     F L I C K R       C O D E     //
+//   !!!!!!!!!!DO NOT UNCOMMENT!!!!!!!!  F L I C K R       C O D E     //
 
 
 const FLICKR_ENDPOINT = 'https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?';
@@ -329,4 +326,5 @@ getFlickrApiData();
 ///////////////////////////////////////////////////////////////////////////////////
 
 
-
+console.log(siteLatitude);
+console.log(siteLongitude);
