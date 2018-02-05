@@ -22,11 +22,12 @@ footer{
 /*           F O R M     S T Y L I N G           */
 
 #pac-input{
-	font-size: 40px;
+	
 }
 
 #autocomplete {
-  width: 100%;
+	width: 90%;
+	font-size: 30px;
 }
 
 

@@ -1,17 +1,78 @@
 //* * * * *      C O D E      O R D E R        * * * * * 
-// 1. constants
-// 2. wunderground api: sunset/sunrise | current time | 12 hr forecast.
-// 3. ???current weather???
-// 4. hiking trails
-// 5. google maps
-// 6. 
-
+// . constant variables
+// . google places api
+// . wunderground api: sunset/sunrise | current time | 12 hr forecast.
+// . hiking trails api
+// . Commented out/Might use: Google Maps API / Flickr API
 
 
 
 //     C O N S T A N T S   
-let siteLatitude = 38.776991;  //will be dynamically set to clicked site lat
-let siteLongitude = -77.263568;  //will be dynamically set to clicked site lat
+let siteLatitude = "";  //will be dynamically set to clicked site lat
+let siteLongitude ="";  //will be dynamically set to clicked site lat
+
+
+
+let placeSearch;
+let autocomplete; 
+let geocoder;
+
+function initAutocomplete() {
+  //Access the Google Maps API geocoding service
+  geocoder = new google.maps.Geocoder();
+  autocomplete = new google.maps.places.Autocomplete(
+    (document.getElementById('autocomplete')), {
+      types: ['geocode']
+    });
+
+  autocomplete.addListener('place_changed', fillInAddress);
+}
+
+function codeAddress(address) {
+	//The Geocoder.geocode() method initiates a request to 
+	//the geocoding service, passing it a GeocoderRequest object 
+	//literal containing the input terms and a callback method 
+	//to execute upon receipt of the response.
+	geocoder.geocode({
+		//supply he GeocoderRequest object literal the "address"
+		//parameter which we want to geocode.
+		'address': address
+	//The Geocoding service requires a callback method to execute 
+	//upon retrieval of the geocoder's results. This callback should 
+	//pass two parameters to hold the results and a status code, 
+	//in that order.	
+	}, function(results, status) {
+    if (status === 'OK') {
+      // This is the lat and lng results[0].geometry.location
+      //The GeocoderResult object represents a single geocoding result.
+      //"geometry" contains the following information:
+      //"location" contains the geocoded latitude,longitude value. 
+      //Note that we return this location as a LatLng object, not as a formatted string.
+      console.log(results[0].geometry.location)
+      alert(results[0].geometry.location);
+
+      //Assign latitude result to global siteLatitude variable
+      let siteLatitude = results[0].geometry.location.lat();
+      console.log(siteLatitude);
+
+      //Assign longitude result to global siteLongitude variable
+      let siteLongitude = results[0].geometry.location.lng();
+      console.log(siteLongitude);
+      
+
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+
+function fillInAddress() {
+  var place = autocomplete.getPlace();
+
+  codeAddress(document.getElementById('autocomplete').value);
+}
+
+
 
 
  /*
@@ -269,47 +330,3 @@ getFlickrApiData();
 
 
 
-
-function userSubmitData() {
-	$('.js-search-form').on('click', '.js-submit-button', function(event) {
-	event.preventDefault();
-	let queryValue = $('#query').val();
-	})
-}
-
-userSubmitData();
-
-
-
-let placeSearch;
-let autocomplete; 
-let geocoder;
-
-function initAutocomplete() {
-  geocoder = new google.maps.Geocoder();
-  autocomplete = new google.maps.places.Autocomplete(
-    (document.getElementById('autocomplete')), {
-      types: ['geocode']
-    });
-
-  autocomplete.addListener('place_changed', fillInAddress);
-}
-
-function codeAddress(address) {
-  geocoder.geocode({
-    'address': address
-  }, function(results, status) {
-    if (status == 'OK') {
-      // This is the lat and lng results[0].geometry.location
-      alert(results[0].geometry.location);
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
-    }
-  });
-}
-
-function fillInAddress() {
-  var place = autocomplete.getPlace();
-
-  codeAddress(document.getElementById('autocomplete').value);
-}
