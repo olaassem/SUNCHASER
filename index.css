@@ -19,6 +19,17 @@ footer{
 }
 
 
+/*           F O R M     S T Y L I N G           */
+
+#pac-input{
+	font-size: 40px;
+}
+
+#autocomplete {
+  width: 100%;
+}
+
+
 
 
 /*           S U N R I S E      &      S U N S E T      S T Y L I N G           */ 

@@ -14,7 +14,7 @@ let siteLatitude = 38.776991;  //will be dynamically set to clicked site lat
 let siteLongitude = -77.263568;  //will be dynamically set to clicked site lat
 
 
- 
+ /*
 
 //  WUNDERGROUND API:  SUNSET/SUNRISE | CURRENT TIME | 12 HOUR FORECAST CODE  //
 
@@ -264,3 +264,52 @@ function getFlickrApiData(){
 
 getFlickrApiData();
 */
+
+///////////////////////////////////////////////////////////////////////////////////
+
+
+
+
+function userSubmitData() {
+	$('.js-search-form').on('click', '.js-submit-button', function(event) {
+	event.preventDefault();
+	let queryValue = $('#query').val();
+	})
+}
+
+userSubmitData();
+
+
+
+let placeSearch;
+let autocomplete; 
+let geocoder;
+
+function initAutocomplete() {
+  geocoder = new google.maps.Geocoder();
+  autocomplete = new google.maps.places.Autocomplete(
+    (document.getElementById('autocomplete')), {
+      types: ['geocode']
+    });
+
+  autocomplete.addListener('place_changed', fillInAddress);
+}
+
+function codeAddress(address) {
+  geocoder.geocode({
+    'address': address
+  }, function(results, status) {
+    if (status == 'OK') {
+      // This is the lat and lng results[0].geometry.location
+      alert(results[0].geometry.location);
+    } else {
+      alert('Geocode was not successful for the following reason: ' + status);
+    }
+  });
+}
+
+function fillInAddress() {
+  var place = autocomplete.getPlace();
+
+  codeAddress(document.getElementById('autocomplete').value);
+}

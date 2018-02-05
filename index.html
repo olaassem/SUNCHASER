@@ -35,14 +35,26 @@
 				<main role="main">
 
 
+				<input id="pac-input" class="controls" type="text" placeholder="Search Box">
 
+
+				<div id="locationField">
+				    <input id="autocomplete" placeholder="Search by trail name, city, or address" type="text" />
+				</div>
+
+
+
+
+
+
+<!--
 				<form role="form" class="js-search-form" action="#" method='#'>
 					<label for="query"></label>
 					<input type="text" id="query" name="trail-query" placeholder="Search Trails"/><br/>
-					<button type="submit" class="js-submit">Find Trails</button>
+					<button type="submit" class="js-submit-button">Find Trails</button>
 				</form>
 
-
+-->
 
 					<h2>Current Time</h2>
 					<div class="js-current-time"></div>
@@ -93,6 +105,11 @@
 
 	<!-- Google Maps Script 
 	<script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6ECb06GHjgfRQjrOJKy6tQqScBimbFmA&callback=initMap"></script>-->
+
+	<!-- Google Maps Places Library -->
+	  <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6ECb06GHjgfRQjrOJKy6tQqScBimbFmA&libraries=places&callback=initAutocomplete"></script>
+
+
 
 	<!-- jQuery Script -->
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
