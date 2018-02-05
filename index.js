@@ -1,10 +1,10 @@
 //* * * * *      C O D E      O R D E R        * * * * * 
 // 1. constants
 // 2. wunderground api: sunset/sunrise | current time | 12 hr forecast.
-// 3. weather
+// 3. ???current weather???
 // 4. hiking trails
 // 5. google maps
-// 6. pictures
+// 6. 
 
 
 
@@ -48,12 +48,12 @@ function displayCurrentTime( timenow ){
 //Display Sunrise/Sunset Times
 function displaySunsetSunrise( suntimes ){
 	$('.js-sunrise-sunset').html(`
-		<div class=js-sunrise-conatiner>	
+		<div class="js-sunrise-conatiner col-6">	
 			<img class="js-sunrise-img" src="https://png.icons8.com/metro/1600/sunrise.png" alt="sunrise icon"></img>
 			<h3>Sunrise</h3>
 			<h3 class="js-sunrise-time">${suntimes.sun_phase.sunrise.hour}:${suntimes.sun_phase.sunrise.minute}</h3>
 		</div>	
-		<div class=js-sunset-conatiner>	
+		<div class="js-sunset-conatiner col-6">	
 			<img class="js-sunset-img" src="https://png.icons8.com/metro/1600/sunset.png" alt="sunset icon"></img>
 			<h3>Sunset</h3>
 			<h3 class="js-sunset-time">${suntimes.sun_phase.sunset.hour}:${suntimes.sun_phase.sunset.minute}</h3>
@@ -76,15 +76,13 @@ function getHourlyAPIData(){
 
 getHourlyAPIData();
 
+
 //Display Hourly Forecast 
 function displayHourlyForecast( forecast ){
 	for(let i = 0; i < 12; i++){
-
    		$('.js-forecast-container').append(`
 
-
  		<div class="js-12hourforecast">
-
 			<p class="js-hourly-hour">${forecast.hourly_forecast[i].FCTTIME.hour}:${forecast.hourly_forecast[i].FCTTIME.min}</p>
 			<p class="js-weekday">${forecast.hourly_forecast[i].FCTTIME.weekday_name_abbrev}</p>
 			<img class="js-forecast-icon" src=${forecast.hourly_forecast[i].icon_url} alt="${forecast.hourly_forecast[i].icon}"></img>
@@ -102,8 +100,6 @@ function displayHourlyForecast( forecast ){
 
 
 
-
-
 //     H I K I N G       P R O J E C T       C O D E     //
 
 const HIKINGPROJECT_ENDPOINT = 'https://www.hikingproject.com/data/get-trails?';
@@ -113,7 +109,7 @@ function getHikingProjectData(){
 	let params={
 		lat: siteLatitude,
 		lon: siteLongitude,
-		maxDistance: 10,
+		maxDistance: 5,
 		maxResults: 500,
 		key: HIKINGPROJECT_API_KEY
 
@@ -121,7 +117,7 @@ function getHikingProjectData(){
 	$.getJSON(HIKINGPROJECT_ENDPOINT, params, function( data ){
 	}).done( function( data ){
 		console.log( data );
-		//INSERT DISPLAY TRAILS FUNCTION
+		displayAllTrails( data.trails );
 	}).fail( function ( data ){
 		alert( "getHikingProjectData Ajax call failed");
 	});
@@ -130,21 +126,40 @@ function getHikingProjectData(){
 getHikingProjectData();
 
 
-/*
+//Display Trails
+function displayAllTrails( trails ){
+	trails.forEach(trail => { //loop iterator
+		$(".js-trails-container").append(`
+			<div class="js-trail">
+				<h3 class="js-trailname">${trail.name}</h3>
+				<p class="js-traillocation">${trail.location}</p>
+				<a href=${trail.url} target="_blank">
+					<img class="js-trailimg" src=${trail.imgSqSmall} alt="image of trail"></img>
+				</a>
+				<h3 class="js-traillength">${trail.length} miles</h3>
+				<p class="js-traildifficulty">Difficulty ${trail.difficulty}</p>
+				<p class="js-trailascentdescent">${trail.ascent}' Ascent     ${trail.descent}' Descent</p>
+				<p class="js-trailsummary">${trail.summary}</p>
+			</div>
+			`);
+	});
+}
+
+//in .forEach(), we are dealing with each single element of the array at a time. 
+//(in this case, each single element of the array(item) is an object --> "trail" ).
+
+
+
 
 // TRAIL DIFFICULTY FUNCTION
+/*
   green --  Easy: walking with no obstacles and low grades
-  green/blue -- Easy/Intermediate
+  greenBlue -- Easy/Intermediate
   blue -- Intermediate: 10% grade, small rocks and roots, easy scrambling
   blue black -- Intermediate/Difficult
   black -- Difficult: 15% grade, large obstacles, possible scrambling or climbing
   black black -- Extremely Difficult: 20% grade, 15+" obstacles, many harder sections
 */
-
-
-
-
-
 
 
 
@@ -248,4 +263,4 @@ function getFlickrApiData(){
 } 
 
 getFlickrApiData();
-
+*/

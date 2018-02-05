@@ -1,6 +1,17 @@
+*{
+	font-family: 'Oswald', sans-serif;
+}
+
+
 h1{
 	text-align: center;
 	font-size: 50px;
+	font-weight: light;
+}
+
+.sun{
+	/*font-family: 'Shrikhand', cursive;*/
+	font-weight: bold;
 }
 
 footer{
@@ -28,13 +39,16 @@ footer{
 
 
 
+/*TRAILS STYLING*/
+.js-trail{
+	border: 2px solid grey;
+}
 
 
 
 
 
-
-/*           M A P     S T Y L I N G           */ 
+/*           M A P     S T Y L I N G           
 #map{
     height: 400px;
     width: 100%;
@@ -43,13 +57,18 @@ footer{
     margin-bottom: 30px;
 }
 
-
+*/ 
 
 
 
 /*           W E A T H E R     S T Y L I N G           */
 
 /*  HOURLY FORECAST  */
+
+.js-forecast-container{
+	max-height: 355px;
+    overflow-y: scroll;
+}
 
 .js-12hourforecast{
  	border: 2px solid grey;
