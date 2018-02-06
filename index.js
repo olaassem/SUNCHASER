@@ -2,7 +2,7 @@
 // . google places api
 // . wunderground api: sunset/sunrise | current time | 12 hr forecast.
 // . hiking trails api
-// . Commented out/Might use: Google Maps API / Flickr API
+// . Commented out/Might use: Google Maps API 
 
 
 //G O O G L E    P L A C E S    C O D E//     
@@ -156,6 +156,7 @@ function getHikingProjectData( lat, lng ){
 	}).done( function( data ){
 		console.log( data );
 		displayAllTrails( data.trails );
+		console.log(data.trails);
 	}).fail( function ( data ){
 		alert( "getHikingProjectData Ajax call failed");
 	});
@@ -165,6 +166,7 @@ function getHikingProjectData( lat, lng ){
 //Display Trails
 function displayAllTrails( trails ){
 	trails.forEach(trail => { //loop iterator
+		const traildifflevel = displayTrailDifficulty( trail.difficulty );
 		$(".js-trails-container").append(`
 			<div class="js-trail">
 				<h3 class="js-trailname">${trail.name}</h3>
@@ -173,7 +175,7 @@ function displayAllTrails( trails ){
 					<img class="js-trailimg" src=${trail.imgSqSmall} alt="image of trail"></img>
 				</a>
 				<h3 class="js-traillength">${trail.length} miles</h3>
-				<p class="js-traildifficulty">Difficulty ${trail.difficulty}</p>
+				<p class="js-traildifficulty">${traildifflevel}</p>
 				<p class="js-trailascentdescent">${trail.ascent}' Ascent     ${trail.descent}' Descent</p>
 				<p class="js-trailsummary">${trail.summary}</p>
 			</div>
@@ -181,21 +183,24 @@ function displayAllTrails( trails ){
 	});
 }
 
-//in .forEach(), we are dealing with each single element of the array at a time. 
-//(in this case, each single element of the array(item) is an object --> "trail" ).
-
-
-
-
-// TRAIL DIFFICULTY FUNCTION
-/*
-  green --  Easy: walking with no obstacles and low grades
-  greenBlue -- Easy/Intermediate
-  blue -- Intermediate: 10% grade, small rocks and roots, easy scrambling
-  blue black -- Intermediate/Difficult
-  black -- Difficult: 15% grade, large obstacles, possible scrambling or climbing
-  black black -- Extremely Difficult: 20% grade, 15+" obstacles, many harder sections
-*/
+//Replace trail difficulty color value with description text
+function displayTrailDifficulty( traildifflevel ){
+	if( traildifflevel === "green" ){
+		return "Easy: walking with no obstacles and low grades";
+	}if( traildifflevel === "greenBlue" ){
+		return "Easy/Intermediate";
+	}if( traildifflevel === "blue" ){
+		return "Intermediate: 10% grade, small rocks and roots, easy scrambling";
+	}if( traildifflevel === "blueBlack" ){
+		return "Intermediate/Difficult";
+	}if( traildifflevel === "black" ){
+		return "Difficult: 15% grade, large obstacles, possible scrambling or climbing";
+	}if( traildifflevel === "blackBack" ){
+		return'Extremely Difficult: 20% grade, 15+" obstacles, many harder sections';
+	}if( traildifflevel === "" ){
+		return"No rating available";
+	};
+}
 
 
 
@@ -266,42 +271,6 @@ transit.station.rail selects rail stations.
 */
 
 
-/*
-//   !!!!!!!!!!DO NOT UNCOMMENT!!!!!!!!  F L I C K R       C O D E     //
-
-
-const FLICKR_ENDPOINT = 'https://api.flickr.com/services/feeds/photos_public.gne?jsoncallback=?';
-const FLICKR_API_KEY = 'aeb542f2e60fb88d6be6dfed6fec35d1';
-const FLICKR_SECRET_API_KEY = 'fc367410d2dfeb24';
-
-
-//This method requires authentication with 'write' permission.
-//--> may mean have an api key
-//-->
-
-
-//https://api.flickr.com/services/feeds/photos_public.gne
-
-
-function getFlickrApiData(){
-	let params={
-		method: "flickr.photos.geo.getLocation",
-		//method is a parameter
-		lat: queryLatitude,
-		lon: queryLongitude,
-		format: "json",
-		api_key:FLICKR_API_KEY
-	};
-	$.getJSON(FLICKR_ENDPOINT,params, function(    ){
-	}).done( function( data ){
-		console.log(data);
-	}).fail( function( data ){
-		alert("Flickr Ajax Call Failed")
-	});
-} 
-
-getFlickrApiData();
-*/
 
 ///////////////////////////////////////////////////////////////////////////////////
 
