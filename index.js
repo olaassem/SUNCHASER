@@ -1,27 +1,26 @@
-//* * * * *      C O D E      O R D E R        * * * * * 
-// . constant variables
+//C O D E    O R D E R//
 // . google places api
 // . wunderground api: sunset/sunrise | current time | 12 hr forecast.
 // . hiking trails api
 // . Commented out/Might use: Google Maps API / Flickr API
 
 
-//    G O O G L E      P L A C E S       C O D E    //     
+//G O O G L E    P L A C E S    C O D E//     
 
 let placeSearch;
 let autocomplete; 
 let geocoder;
 
 function initAutocomplete() {
-  //Access the Google Maps API geocoding service
-  geocoder = new google.maps.Geocoder();
-  autocomplete = new google.maps.places.Autocomplete(
+	//Access the Google Maps API geocoding service
+	geocoder = new google.maps.Geocoder();
+	autocomplete = new google.maps.places.Autocomplete(
     (document.getElementById('autocomplete')), {
-      types: ['geocode']
+    	types: ['geocode']
     });
 
-  autocomplete.addListener('place_changed', fillInAddress);
-}//t
+    autocomplete.addListener('place_changed', fillInAddress);
+}
 
 function codeAddress(address) {
 	//The Geocoder.geocode() method initiates a request to 
@@ -29,51 +28,46 @@ function codeAddress(address) {
 	//literal containing the input terms and a callback method 
 	//to execute upon receipt of the response.
 	geocoder.geocode({
-		//supply he GeocoderRequest object literal the "address"
-		//parameter which we want to geocode.
+	//supply he GeocoderRequest object literal the "address"
+	//parameter which we want to geocode.
 		'address': address
 	//The Geocoding service requires a callback method to execute 
 	//upon retrieval of the geocoder's results. This callback should 
 	//pass two parameters to hold the results and a status code, 
 	//in that order.	
 	}, function(results, status) {
-    if (status === 'OK') {
-      // This is the lat and lng results[0].geometry.location
-      //The GeocoderResult object represents a single geocoding result.
-      //"geometry" contains the following information:
-      //"location" contains the geocoded latitude,longitude value. 
-      //Note that we return this location as a LatLng object, not as a formatted string.
-      console.log(results[0].geometry.location);
-      alert(results[0].geometry.location);
+		if (status === 'OK') {
+	// This is the lat and lng results[0].geometry.location
+	//The GeocoderResult object represents a single geocoding result.
+	//"geometry" contains the following information:
+	//"location" contains the geocoded latitude,longitude value. 
+	//Note that we return this location as a LatLng object, not as a formatted string.
+			console.log(results[0].geometry.location);
 
-      //Assign latitude result to global queryLatitude variable
-      //remove "let" to not create the variable twice ((not reassignement - creating a new variable
-      let queryLatitude = results[0].geometry.location.lat();
-      //console.log(queryLatitude);
+	//Create new queryLatitude variable and assign latitude result to it 
+			let queryLatitude = results[0].geometry.location.lat();
 
-      //Assign longitude result to global queryLongitude variable
-      let queryLongitude = results[0].geometry.location.lng();
-      //console.log(queryLongitude);
-      getSunriseSunsetAPIData(queryLatitude, queryLongitude);
-      getHourlyAPIData(queryLatitude, queryLongitude);
-      getHikingProjectData(queryLatitude, queryLongitude);
+	//Create new queryLongitude variable and assign longitude result to it 
+			let queryLongitude = results[0].geometry.location.lng();
 
-    } else {
-      alert('Geocode was not successful for the following reason: ' + status);
-    }
-  });
+	//Call api functions here and pass lat and lng parameters through them
+			getSunriseSunsetAPIData(queryLatitude, queryLongitude);
+      		getHourlyAPIData(queryLatitude, queryLongitude);
+      		getHikingProjectData(queryLatitude, queryLongitude);
+
+    	} else {
+    		alert('Geocode was not successful for the following reason: ' + status);
+    	}
+  	});
 }
 
 function fillInAddress() {
-  var place = autocomplete.getPlace();
-
-  codeAddress(document.getElementById('autocomplete').value);
+	var place = autocomplete.getPlace();
+	codeAddress(document.getElementById('autocomplete').value);
 }
 
 
-
-
-//  WUNDERGROUND API:  SUNSET/SUNRISE | CURRENT TIME | 12 HOUR FORECAST CODE  //
+//WUNDERGROUND API:  SUNSET/SUNRISE | CURRENT TIME | 12 HOUR FORECAST CODE//
 
 const SUNSETSUNRISE_ENDPOINT = 'http://api.wunderground.com/api/';
 const SUNSETSUNRISE_API_KEY = '4259db9143b819d5';
@@ -89,9 +83,6 @@ function getSunriseSunsetAPIData( lat, lng ){
 	});
 }
 
-
-
-
 //Display Current Time
 function displayCurrentTime( timenow ){
 	$('.js-current-time').html(`
@@ -100,7 +91,6 @@ function displayCurrentTime( timenow ){
 		`
 	);
 }
-
 
 //Display Sunrise/Sunset Times
 function displaySunsetSunrise( suntimes ){
@@ -119,7 +109,6 @@ function displaySunsetSunrise( suntimes ){
 	);
 }
  
-
 //Get Hourly Forecast Data
 function getHourlyAPIData( lat, lng ){
 	$.getJSON( ("http://api.wunderground.com/api/4259db9143b819d5/hourly/q/"+lat+","+lng+".json"), function( data ){
@@ -131,30 +120,26 @@ function getHourlyAPIData( lat, lng ){
 	});
 }
 
-
-
 //Display Hourly Forecast 
 function displayHourlyForecast( forecast ){
 	for(let i = 0; i < 12; i++){
    		$('.js-forecast-container').append(`
-
- 		<div class="js-12hourforecast">
-			<p class="js-hourly-hour">${forecast.hourly_forecast[i].FCTTIME.hour}:${forecast.hourly_forecast[i].FCTTIME.min}</p>
-			<p class="js-weekday">${forecast.hourly_forecast[i].FCTTIME.weekday_name_abbrev}</p>
-			<img class="js-forecast-icon" src=${forecast.hourly_forecast[i].icon_url} alt="${forecast.hourly_forecast[i].icon}"></img>
-			<p class="js-forecast-condition">${forecast.hourly_forecast[i].condition}</p>
-			<p class="js-hourly-temp">${forecast.hourly_forecast[i].temp.english}&#176;F</p>
-			<p class="js-hourly-precip">PRECIP ${forecast.hourly_forecast[i].temp.english}%</p>
-			<p class="js-hourly-humidity">HUMIDITY ${forecast.hourly_forecast[i].humidity}%</p>
-			<p class="js-hourly-wind">WIND ${forecast.hourly_forecast[i].wdir.dir} ${forecast.hourly_forecast[i].wspd.english} mph</p>
-		</div>
+	 		<div class="js-12hourforecast">
+				<p class="js-hourly-hour">${forecast.hourly_forecast[i].FCTTIME.hour}:${forecast.hourly_forecast[i].FCTTIME.min}</p>
+				<p class="js-weekday">${forecast.hourly_forecast[i].FCTTIME.weekday_name_abbrev}</p>
+				<img class="js-forecast-icon" src=${forecast.hourly_forecast[i].icon_url} alt="${forecast.hourly_forecast[i].icon}"></img>
+				<p class="js-forecast-condition">${forecast.hourly_forecast[i].condition}</p>
+				<p class="js-hourly-temp">${forecast.hourly_forecast[i].temp.english}&#176;F</p>
+				<p class="js-hourly-precip">PRECIP ${forecast.hourly_forecast[i].temp.english}%</p>
+				<p class="js-hourly-humidity">HUMIDITY ${forecast.hourly_forecast[i].humidity}%</p>
+				<p class="js-hourly-wind">WIND ${forecast.hourly_forecast[i].wdir.dir} ${forecast.hourly_forecast[i].wspd.english} mph</p>
+			</div>
 		`)
 	}
 }
 
 
-
-//     H I K I N G       P R O J E C T       C O D E     //
+//H I K I N G       P R O J E C T       C O D E//
 
 const HIKINGPROJECT_ENDPOINT = 'https://www.hikingproject.com/data/get-trails?';
 const HIKINGPROJECT_API_KEY = '200215433-db3c18acd15e272f8a8e4023dd642a8a';
@@ -166,7 +151,6 @@ function getHikingProjectData( lat, lng ){
 		maxDistance: 5,
 		maxResults: 500,
 		key: HIKINGPROJECT_API_KEY
-
 	}
 	$.getJSON(HIKINGPROJECT_ENDPOINT, params, function( data ){
 	}).done( function( data ){
@@ -176,7 +160,6 @@ function getHikingProjectData( lat, lng ){
 		alert( "getHikingProjectData Ajax call failed");
 	});
 }
-
 
 
 //Display Trails
@@ -194,7 +177,7 @@ function displayAllTrails( trails ){
 				<p class="js-trailascentdescent">${trail.ascent}' Ascent     ${trail.descent}' Descent</p>
 				<p class="js-trailsummary">${trail.summary}</p>
 			</div>
-			`);
+		`);
 	});
 }
 
@@ -213,6 +196,15 @@ function displayAllTrails( trails ){
   black -- Difficult: 15% grade, large obstacles, possible scrambling or climbing
   black black -- Extremely Difficult: 20% grade, 15+" obstacles, many harder sections
 */
+
+
+
+
+
+
+
+
+
 
 
 
