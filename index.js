@@ -9,9 +9,9 @@
 
 //    L A T / L O N G     G L O B A L      V A R I A B L E S    //
 
-let siteLatitude = 38.7934466;  //will be dynamically set to clicked site lat
+let queryLatitude = 38.7934466;  //will be dynamically set to clicked query lat
 
-let siteLongitude = -77.27165049999996;  //will be dynamically set to clicked site lat
+let queryLongitude = -77.27165049999996;  //will be dynamically set to clicked query lat
 
 
 
@@ -55,13 +55,13 @@ function codeAddress(address) {
       console.log(results[0].geometry.location)
       alert(results[0].geometry.location);
 
-      //Assign latitude result to global siteLatitude variable
-      let siteLatitude = results[0].geometry.location.lat();
-      console.log(siteLatitude);
+      //Assign latitude result to global queryLatitude variable
+      let queryLatitude = results[0].geometry.location.lat();
+      console.log(queryLatitude);
 
-      //Assign longitude result to global siteLongitude variable
-      let siteLongitude = results[0].geometry.location.lng();
-      console.log(siteLongitude);
+      //Assign longitude result to global queryLongitude variable
+      let queryLongitude = results[0].geometry.location.lng();
+      console.log(queryLongitude);
       
 
     } else {
@@ -87,7 +87,7 @@ const SUNSETSUNRISE_ENDPOINT = 'http://api.wunderground.com/api/';
 const SUNSETSUNRISE_API_KEY = '4259db9143b819d5';
 
 function getSunriseSunsetAPIData(){
-	$.getJSON( ("http://api.wunderground.com/api/4259db9143b819d5/astronomy/q/"+siteLatitude+","+siteLongitude+".json"), function( data ){
+	$.getJSON( ("http://api.wunderground.com/api/4259db9143b819d5/astronomy/q/"+queryLatitude+","+queryLongitude+".json"), function( data ){
 	}).done(function ( data ){
 		console.log( data )
 		displaySunsetSunrise( data );
@@ -130,7 +130,7 @@ function displaySunsetSunrise( suntimes ){
 
 //Get Hourly Forecast Data
 function getHourlyAPIData(){
-	$.getJSON( ("http://api.wunderground.com/api/4259db9143b819d5/hourly/q/"+siteLatitude+","+siteLongitude+".json"), function( data ){
+	$.getJSON( ("http://api.wunderground.com/api/4259db9143b819d5/hourly/q/"+queryLatitude+","+queryLongitude+".json"), function( data ){
 	}).done(function ( data ){
 		console.log( data )
 		displayHourlyForecast( data);
@@ -170,8 +170,8 @@ const HIKINGPROJECT_API_KEY = '200215433-db3c18acd15e272f8a8e4023dd642a8a';
 
 function getHikingProjectData(){
 	let params={
-		lat: siteLatitude,
-		lon: siteLongitude,
+		lat: queryLatitude,
+		lon: queryLongitude,
 		maxDistance: 5,
 		maxResults: 500,
 		key: HIKINGPROJECT_API_KEY
@@ -234,8 +234,6 @@ function displayAllTrails( trails ){
 
 
 //  Google Maps Marker Icons
-//const UWH_ICON1 = 'https://upload.wikimedia.org/wikipedia/it/9/91/UNESCO_World_Heritage_Site_logo.svg';
-//const UWH_ICON1 = 'https://upload.wikimedia.org/wikipedia/commons/c/ce/World_Heritage_Logo_global.svg';
 
 //  Google Maps Marker Icons
 //const GOOGLE_MAPS_ENDPNT = 'https://maps.googleapis.com/maps/api/js';
@@ -254,8 +252,8 @@ function initMap(){
 	let options = {
 		zoom: 12,
 		center: {
-			lat: siteLatitude,
-			lng: siteLongitude
+			lat: queryLatitude,
+			lng: queryLongitude
 		},
 	};
 	//New Map
@@ -307,8 +305,8 @@ function getFlickrApiData(){
 	let params={
 		method: "flickr.photos.geo.getLocation",
 		//method is a parameter
-		lat: siteLatitude,
-		lon: siteLongitude,
+		lat: queryLatitude,
+		lon: queryLongitude,
 		format: "json",
 		api_key:FLICKR_API_KEY
 	};
@@ -326,5 +324,5 @@ getFlickrApiData();
 ///////////////////////////////////////////////////////////////////////////////////
 
 
-console.log(siteLatitude);
-console.log(siteLongitude);
+console.log(queryLatitude);
+console.log(queryLongitude);
