@@ -9,9 +9,9 @@
 
 //    L A T / L O N G     G L O B A L      V A R I A B L E S    //
 
-let queryLatitude = 38.7934466;  //will be dynamically set to clicked query lat
+let queryLatitude; //= 38.7934466;  //will be dynamically set to clicked query lat
 
-let queryLongitude = -77.27165049999996;  //will be dynamically set to clicked query lat
+let queryLongitude; //= -77.27165049999996;  //will be dynamically set to clicked query lat
 
 
 
@@ -52,7 +52,7 @@ function codeAddress(address) {
       //"geometry" contains the following information:
       //"location" contains the geocoded latitude,longitude value. 
       //Note that we return this location as a LatLng object, not as a formatted string.
-      console.log(results[0].geometry.location)
+      console.log(results[0].geometry.location);
       alert(results[0].geometry.location);
 
       //Assign latitude result to global queryLatitude variable
