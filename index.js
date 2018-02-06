@@ -6,15 +6,6 @@
 // . Commented out/Might use: Google Maps API / Flickr API
 
 
-
-//    L A T / L O N G     G L O B A L      V A R I A B L E S    //
-
-let queryLatitude; //= 38.7934466;  //will be dynamically set to clicked query lat
-
-let queryLongitude; //= -77.27165049999996;  //will be dynamically set to clicked query lat
-
-
-
 //    G O O G L E      P L A C E S       C O D E    //     
 
 let placeSearch;
@@ -30,7 +21,7 @@ function initAutocomplete() {
     });
 
   autocomplete.addListener('place_changed', fillInAddress);
-}
+}//t
 
 function codeAddress(address) {
 	//The Geocoder.geocode() method initiates a request to 
@@ -56,13 +47,16 @@ function codeAddress(address) {
       alert(results[0].geometry.location);
 
       //Assign latitude result to global queryLatitude variable
+      //remove "let" to not create the variable twice ((not reassignement - creating a new variable
       let queryLatitude = results[0].geometry.location.lat();
-      console.log(queryLatitude);
+      //console.log(queryLatitude);
 
       //Assign longitude result to global queryLongitude variable
       let queryLongitude = results[0].geometry.location.lng();
-      console.log(queryLongitude);
-      
+      //console.log(queryLongitude);
+      getSunriseSunsetAPIData(queryLatitude, queryLongitude);
+      getHourlyAPIData(queryLatitude, queryLongitude);
+      getHikingProjectData(queryLatitude, queryLongitude);
 
     } else {
       alert('Geocode was not successful for the following reason: ' + status);
@@ -79,15 +73,13 @@ function fillInAddress() {
 
 
 
-
-
 //  WUNDERGROUND API:  SUNSET/SUNRISE | CURRENT TIME | 12 HOUR FORECAST CODE  //
 
 const SUNSETSUNRISE_ENDPOINT = 'http://api.wunderground.com/api/';
 const SUNSETSUNRISE_API_KEY = '4259db9143b819d5';
 
-function getSunriseSunsetAPIData(){
-	$.getJSON( ("http://api.wunderground.com/api/4259db9143b819d5/astronomy/q/"+queryLatitude+","+queryLongitude+".json"), function( data ){
+function getSunriseSunsetAPIData( lat, lng ){
+	$.getJSON( ("http://api.wunderground.com/api/4259db9143b819d5/astronomy/q/"+lat+","+lng+".json"), function( data ){
 	}).done(function ( data ){
 		console.log( data )
 		displaySunsetSunrise( data );
@@ -97,7 +89,7 @@ function getSunriseSunsetAPIData(){
 	});
 }
 
-getSunriseSunsetAPIData();
+
 
 
 //Display Current Time
@@ -129,8 +121,8 @@ function displaySunsetSunrise( suntimes ){
  
 
 //Get Hourly Forecast Data
-function getHourlyAPIData(){
-	$.getJSON( ("http://api.wunderground.com/api/4259db9143b819d5/hourly/q/"+queryLatitude+","+queryLongitude+".json"), function( data ){
+function getHourlyAPIData( lat, lng ){
+	$.getJSON( ("http://api.wunderground.com/api/4259db9143b819d5/hourly/q/"+lat+","+lng+".json"), function( data ){
 	}).done(function ( data ){
 		console.log( data )
 		displayHourlyForecast( data);
@@ -139,7 +131,6 @@ function getHourlyAPIData(){
 	});
 }
 
-getHourlyAPIData();
 
 
 //Display Hourly Forecast 
@@ -168,10 +159,10 @@ function displayHourlyForecast( forecast ){
 const HIKINGPROJECT_ENDPOINT = 'https://www.hikingproject.com/data/get-trails?';
 const HIKINGPROJECT_API_KEY = '200215433-db3c18acd15e272f8a8e4023dd642a8a';
 
-function getHikingProjectData(){
+function getHikingProjectData( lat, lng ){
 	let params={
-		lat: queryLatitude,
-		lon: queryLongitude,
+		lat: lat,
+		lon: lng,
 		maxDistance: 5,
 		maxResults: 500,
 		key: HIKINGPROJECT_API_KEY
@@ -186,7 +177,6 @@ function getHikingProjectData(){
 	});
 }
 
-getHikingProjectData();
 
 
 //Display Trails
@@ -323,6 +313,3 @@ getFlickrApiData();
 
 ///////////////////////////////////////////////////////////////////////////////////
 
-
-console.log(queryLatitude);
-console.log(queryLongitude);
