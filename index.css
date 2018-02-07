@@ -21,10 +21,6 @@ footer{
 
 /*           F O R M     S T Y L I N G           */
 
-#pac-input{
-	
-}
-
 #autocomplete {
 	width: 90%;
 	font-size: 30px;
@@ -56,11 +52,20 @@ footer{
 	border: 2px solid grey;
 }
 
+.crop {
+	height: 200px;
+	width: 300px;
+	overflow: hidden;
+}
+
+.crop img {
+	height: auto;
+	width: 300px;
+}
 
 
 
-
-/*           M A P     S T Y L I N G           
+/*           M A P     S T Y L I N G   */         
 #map{
     height: 400px;
     width: 100%;
@@ -69,7 +74,7 @@ footer{
     margin-bottom: 30px;
 }
 
-*/ 
+
 
 
 

@@ -7,11 +7,18 @@
 
 //G O O G L E    P L A C E S    C O D E//     
 
+function initialize() {
+   initMap();
+   initAutocomplete();
+}
+
+
+
 let placeSearch;
 let autocomplete; 
 let geocoder;
 
-function initAutocomplete() {
+function initAutocomplete(){
 	//Access the Google Maps API geocoding service
 	geocoder = new google.maps.Geocoder();
 	autocomplete = new google.maps.places.Autocomplete(
@@ -22,7 +29,7 @@ function initAutocomplete() {
     autocomplete.addListener('place_changed', fillInAddress);
 }
 
-function codeAddress(address) {
+function codeAddress(address){
 	//The Geocoder.geocode() method initiates a request to 
 	//the geocoding service, passing it a GeocoderRequest object 
 	//literal containing the input terms and a callback method 
@@ -35,25 +42,26 @@ function codeAddress(address) {
 	//upon retrieval of the geocoder's results. This callback should 
 	//pass two parameters to hold the results and a status code, 
 	//in that order.	
-	}, function(results, status) {
+	}, function( results, status ){
 		if (status === 'OK') {
 	// This is the lat and lng results[0].geometry.location
 	//The GeocoderResult object represents a single geocoding result.
 	//"geometry" contains the following information:
 	//"location" contains the geocoded latitude,longitude value. 
 	//Note that we return this location as a LatLng object, not as a formatted string.
-			console.log(results[0].geometry.location);
+			console.log( results[0].geometry.location );
 
 	//Create new queryLatitude variable and assign latitude result to it 
 			let queryLatitude = results[0].geometry.location.lat();
-
+			console.log(queryLatitude);
 	//Create new queryLongitude variable and assign longitude result to it 
 			let queryLongitude = results[0].geometry.location.lng();
-
+			console.log(queryLongitude);
 	//Call api functions here and pass lat and lng parameters through them
-			getSunriseSunsetAPIData(queryLatitude, queryLongitude);
-      		getHourlyAPIData(queryLatitude, queryLongitude);
-      		getHikingProjectData(queryLatitude, queryLongitude);
+			getSunriseSunsetAPIData( queryLatitude, queryLongitude );
+      		getHourlyAPIData( queryLatitude, queryLongitude );
+      		getHikingProjectData( queryLatitude, queryLongitude );
+      		//initMap( queryLatitude, queryLongitude );
 
     	} else {
     		alert('Geocode was not successful for the following reason: ' + status);
@@ -61,8 +69,8 @@ function codeAddress(address) {
   	});
 }
 
-function fillInAddress() {
-	var place = autocomplete.getPlace();
+function fillInAddress(){
+	let place = autocomplete.getPlace();
 	codeAddress(document.getElementById('autocomplete').value);
 }
 
@@ -163,19 +171,23 @@ function getHikingProjectData( lat, lng ){
 }
 
 
-//Display Trails
+
+//Display Trail Info
 function displayAllTrails( trails ){
 	trails.forEach(trail => { //loop iterator
-		const traildifflevel = displayTrailDifficulty( trail.difficulty );
+		const trailDifficultyLevel = displayTrailDifficulty( trail.difficulty );
+		const fillerTrailImg = fillMissingTrailImg( trail.imgMedium );
 		$(".js-trails-container").append(`
 			<div class="js-trail">
 				<h3 class="js-trailname">${trail.name}</h3>
 				<p class="js-traillocation">${trail.location}</p>
-				<a href=${trail.url} target="_blank">
-					<img class="js-trailimg" src=${trail.imgSqSmall} alt="image of trail"></img>
-				</a>
+				<div class="crop"
+					<a href=${trail.url} target="_blank">
+						<img class="js-trailimg" src=${fillerTrailImg} alt="image of trail"></img>
+					</a>
+				</div>	
 				<h3 class="js-traillength">${trail.length} miles</h3>
-				<p class="js-traildifficulty">${traildifflevel}</p>
+				<p class="js-traildifficulty">${trailDifficultyLevel}</p>
 				<p class="js-trailascentdescent">${trail.ascent}' Ascent     ${trail.descent}' Descent</p>
 				<p class="js-trailsummary">${trail.summary}</p>
 			</div>
@@ -202,75 +214,46 @@ function displayTrailDifficulty( traildifflevel ){
 	};
 }
 
+//Replace empty trail images with a filler image
+function fillMissingTrailImg( trailImg ){
+	if(trailImg === ""){
+		return "https://upload.wikimedia.org/wikipedia/commons/2/22/Maudslay_running_trail_1.JPG";
+	} else {
+		return trailImg;
+	}
+}
 
 
 
 
-
-
-
-
-
-
-
-
-
-
-/*
-//  !!!!!!!!!!DO NOT UNCOMMENT!!!!!!!!   G O O G L E       M A P S       C O D E     //
-
-
-//  Google Maps Marker Icons
+//G O O G L E       M A P S       C O D E     //
 
 //  Google Maps Marker Icons
 //const GOOGLE_MAPS_ENDPNT = 'https://maps.googleapis.com/maps/api/js';
 //const GOOGLE_MAPS_API_KEY = 'AIzaSyA6ECb06GHjgfRQjrOJKy6tQqScBimbFmA';
 
-function initMap(){
-	// inside function:
+function initMap( ){
 	// set a new variable called map and set it to a new google.map object
 	// since we already set the google maps script in index.html
 	// we can say new google.maps --> do different things
 	// we use .Map to get the map
-	// that's going to take in 2 parameters
-	// 1. the element we are dumping the element in : id map
-	// 2. some map options 
-	// let's put our options inside a variable
-	let options = {
-		zoom: 12,
-		center: {
-			lat: queryLatitude,
-			lng: queryLongitude
-		},
+	let location ={
+		lat: 38.7620,
+		lng: -77.2994
 	};
-	//New Map
-	let map = new google.maps.Map(document.getElementById( 'map' ), options );
-
-	//Transit Layer
-	let transitLayer = new google.maps.TransitLayer();
-        transitLayer.setMap( map );
-
-	//Add UWH Site Marker
-	let uwhSiteMarker = new google.maps.Marker({
-		position: options.center,
-		map: map,
-		//drop down marker animation from top of map
-		animation: google.maps.Animation.DROP
-		//add custom marker icon
-		//icon: UWH_ICON
+	//New map
+	let map = new google.maps.Map(document.getElementById('map'),{
+		zoom: 14,
+		center: location
 	});
+	//Location marker
+	let marker = new google.maps.Marker({
+		position: location,
+		map: map,
+		animation: google.maps.Animation.DROP
+	});
+	//let transitLayer = new google.maps.TransitLayer();
+    //transitLayer.setMap( map );
 }
 
-
-/*
-         featureType: transit
-transit.station selects all transit stations.
-transit.station.airport selects airports.
-transit.station.bus selects bus stops.
-transit.station.rail selects rail stations.
-*/
-
-
-
-///////////////////////////////////////////////////////////////////////////////////
 
