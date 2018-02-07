@@ -8,10 +8,9 @@
 //G O O G L E    P L A C E S    C O D E//     
 
 function initialize() {
-   initMap();
+   //initMap();
    initAutocomplete();
 }
-
 
 
 let placeSearch;
@@ -49,14 +48,14 @@ function codeAddress(address){
 	//"geometry" contains the following information:
 	//"location" contains the geocoded latitude,longitude value. 
 	//Note that we return this location as a LatLng object, not as a formatted string.
-			console.log( results[0].geometry.location );
+			//console.log( results[0].geometry.location );
 
 	//Create new queryLatitude variable and assign latitude result to it 
 			let queryLatitude = results[0].geometry.location.lat();
-			console.log(queryLatitude);
+			//console.log(queryLatitude);
 	//Create new queryLongitude variable and assign longitude result to it 
 			let queryLongitude = results[0].geometry.location.lng();
-			console.log(queryLongitude);
+			//console.log(queryLongitude);
 	//Call api functions here and pass lat and lng parameters through them
 			getSunriseSunsetAPIData( queryLatitude, queryLongitude );
       		getHourlyAPIData( queryLatitude, queryLongitude );
@@ -83,7 +82,7 @@ const SUNSETSUNRISE_API_KEY = '4259db9143b819d5';
 function getSunriseSunsetAPIData( lat, lng ){
 	$.getJSON( ("http://api.wunderground.com/api/4259db9143b819d5/astronomy/q/"+lat+","+lng+".json"), function( data ){
 	}).done(function ( data ){
-		console.log( data )
+		//console.log( data )
 		displaySunsetSunrise( data );
 		displayCurrentTime( data );
 	}).fail(function ( data ){
@@ -121,7 +120,7 @@ function displaySunsetSunrise( suntimes ){
 function getHourlyAPIData( lat, lng ){
 	$.getJSON( ("http://api.wunderground.com/api/4259db9143b819d5/hourly/q/"+lat+","+lng+".json"), function( data ){
 	}).done(function ( data ){
-		console.log( data )
+		//console.log( data )
 		displayHourlyForecast( data);
 	}).fail(function ( data ){
 		alert('getHourlyAPIData function Ajax Call Failed!')
@@ -162,9 +161,9 @@ function getHikingProjectData( lat, lng ){
 	}
 	$.getJSON(HIKINGPROJECT_ENDPOINT, params, function( data ){
 	}).done( function( data ){
-		console.log( data );
+		//console.log( data );
 		displayAllTrails( data.trails );
-		console.log(data.trails);
+		//console.log(data.trails);
 	}).fail( function ( data ){
 		alert( "getHikingProjectData Ajax call failed");
 	});
@@ -174,12 +173,15 @@ function getHikingProjectData( lat, lng ){
 
 //Display Trail Info
 function displayAllTrails( trails ){
-	trails.forEach(trail => { //loop iterator
+	trails.forEach((trail, index) => { //loop iterator
 		const trailDifficultyLevel = displayTrailDifficulty( trail.difficulty );
 		const fillerTrailImg = fillMissingTrailImg( trail.imgMedium );
+		
 		$(".js-trails-container").append(`
 			<div class="js-trail">
-				<h3 class="js-trailname">${trail.name}</h3>
+				<a href=${trail.url} target="_blank">
+					<h3 class="js-trailname">${trail.name}</h3>
+				</a>
 				<p class="js-traillocation">${trail.location}</p>
 				<div class="crop"
 					<a href=${trail.url} target="_blank">
@@ -190,13 +192,27 @@ function displayAllTrails( trails ){
 				<p class="js-traildifficulty">${trailDifficultyLevel}</p>
 				<p class="js-trailascentdescent">${trail.ascent}' Ascent     ${trail.descent}' Descent</p>
 				<p class="js-trailsummary">${trail.summary}</p>
+				<div id="map${index}" class="map"></div>
 			</div>
+			
 		`);
+		const trailMap = initMap( trail.latitude, trail.longitude, index );
 	});
 }
 
+//
+
 //Replace trail difficulty color value with description text
 function displayTrailDifficulty( traildifflevel ){
+  // TODO: use switch statement (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch)
+  //switch (traildifflevel) {
+  //  case 'green':
+  //    return "Easy: walking with no obstacles and low grades";
+  //    
+  //  case 'greenBlue':
+  //    return "Easy/Intermediate";
+  //}
+  
 	if( traildifflevel === "green" ){
 		return "Easy: walking with no obstacles and low grades";
 	}if( traildifflevel === "greenBlue" ){
@@ -224,26 +240,26 @@ function fillMissingTrailImg( trailImg ){
 }
 
 
-
-
-//G O O G L E       M A P S       C O D E     //
+//G O O G L E    M A P S    C O D E//
 
 //  Google Maps Marker Icons
 //const GOOGLE_MAPS_ENDPNT = 'https://maps.googleapis.com/maps/api/js';
 //const GOOGLE_MAPS_API_KEY = 'AIzaSyA6ECb06GHjgfRQjrOJKy6tQqScBimbFmA';
 
-function initMap( ){
+
+function initMap( lat, lng, index ){
 	// set a new variable called map and set it to a new google.map object
 	// since we already set the google maps script in index.html
 	// we can say new google.maps --> do different things
 	// we use .Map to get the map
 	let location ={
-		lat: 38.7620,
-		lng: -77.2994
+		lat: parseFloat(lat),
+		lng: parseFloat(lng)
 	};
+	
 	//New map
-	let map = new google.maps.Map(document.getElementById('map'),{
-		zoom: 14,
+	let map = new google.maps.Map(document.getElementById('map' + index),{
+		zoom: 15,
 		center: location
 	});
 	//Location marker
@@ -252,8 +268,8 @@ function initMap( ){
 		map: map,
 		animation: google.maps.Animation.DROP
 	});
-	//let transitLayer = new google.maps.TransitLayer();
-    //transitLayer.setMap( map );
 }
+
+
 
 
