@@ -178,22 +178,36 @@ function displayAllTrails( trails ){
 		const trailDifficultyLevel = displayTrailDifficulty( trail.difficulty );
 		const fillerTrailImg = fillMissingTrailImg( trail.imgMedium );
 		$(".js-trails-container").append(`
-			<div class="js-trail">
-				<a href=${trail.url} target="_blank">
-					<h3 class="js-trailname">${trail.name}</h3>
-				</a>
-				<p class="js-traillocation">${trail.location}</p>
-				<div class="crop"
-					<a href=${trail.url} target="_blank">
-						<img class="js-trailimg" src=${fillerTrailImg} alt="image of trail"></img>
-					</a>
-				</div>	
-				<h3 class="js-traillength">${trail.length} miles</h3>
-				<p class="js-traildifficulty">${trailDifficultyLevel}</p>
-				<p class="js-trailascentdescent">${trail.ascent}' Ascent     ${trail.descent}' Descent</p>
-				<p class="js-trailsummary">${trail.summary}</p>
-				<div id="map${index}" class="map"></div>
-			</div>
+			
+
+			
+				<div class="col-4">
+
+
+
+					<div class="js-trail">
+						<a href=${trail.url} target="_blank">
+							<h3 class="js-trailname">${trail.name}</h3>
+						</a>
+						<p class="js-traillocation">${trail.location}</p>
+						<div class="crop"
+							<a href=${trail.url} target="_blank">
+								<img class="js-trailimg" src=${fillerTrailImg} alt="image of trail"></img>
+							</a>
+						</div>	
+						<h3 class="js-traillength">${trail.length} miles</h3>
+						<p class="js-traildifficulty">${trailDifficultyLevel}</p>
+						<p class="js-trailascentdescent">${trail.ascent}' Ascent     ${trail.descent}' Descent</p>
+						<p class="js-trailsummary">${trail.summary}</p>
+					</div>
+
+
+
+				</div>
+			
+
+
+			<div id="map${index}" class="map"></div>
 			
 		`);
 		const trailMap = initMap( trail.latitude, trail.longitude, index );
@@ -269,6 +283,42 @@ function initMap( lat, lng, index ){
 		animation: google.maps.Animation.DROP
 	});
 }
+
+
+
+
+
+
+//Scroll-to-top button function
+// 1. lets first listen for the scroll event
+$(window).scroll(function(){
+
+    // top value in this case 0
+    let wScroll = $(this).scrollTop();
+  
+    // determine when to show button
+    let showScrollButton = 200;
+
+    // fadein / fadeout back to  top button
+    if (wScroll > showScrollButton) {
+        $('#scroll-to-top').fadeIn();
+    } else {
+        $('#scroll-to-top').fadeOut();
+    }
+});
+
+
+//Scroll-to-top on-click function
+$('#scroll-to-top').click(function () {
+    $('body,html').animate({
+
+      //scroll to top of window position
+      scrollTop: 0
+    }, 500);
+
+    // stop anchor link behavior
+    return false;
+});
 
 
 
