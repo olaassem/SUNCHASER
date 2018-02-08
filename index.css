@@ -1,35 +1,110 @@
+/*--Universal Styling--*/
+
 *{
 	font-family: 'Oswald', sans-serif;
 }
 
-
-h1{
-	text-align: center;
-	font-size: 50px;
-	font-weight: light;
-}
-
-.sun{
-	/*font-family: 'Shrikhand', cursive;*/
-	font-weight: bold;
-}
-
-footer{
-	margin-top: 100px;
-}
+body{
+    margin: 0;
+    padding: 0;
+} 
+/*--End of Universal Styling--*/
 
 
-/*           F O R M     S T Y L I N G           */
 
-#autocomplete {
-	width: 90%;
-	font-size: 30px;
+/*--Header Styling--*/
+#box1{
+    height: 100vh;
+    width: 100%;
+    background-image: url("https://i.imgur.com/nZjijSC.jpg");
+    opacity: 0.70;
+    background-size: cover;
+    display: table;
+    background-attachment: fixed;
 }
 
 
+.logo{
+	position:absolute;
+    font-size: 52px;
+    color:white;
+    letter-spacing:8px;
+    margin: 0px;
+    text-align: center;
+    vertical-align: middle;
+    top:29%;
+	width:100%;
+}
+
+.intro{
+	position:absolute;
+    font-size: 18px;
+    color:white;
+    letter-spacing:8px;
+    margin: 0px;
+    text-align: center;
+    vertical-align: middle;
+    top:42%;
+	width:100%;
+}
 
 
-/*           S U N R I S E      &      S U N S E T      S T Y L I N G           */ 
+#locationField{
+	position:absolute;
+    color:white;
+    margin: 0px;
+    text-align: center;
+    vertical-align: middle;
+    top:63%;
+	width:100%;
+}
+
+
+#autocomplete{
+	width:40%;
+	font-size: 22px;
+}
+
+/*container with the autocomplete results is a DIV with the class*/
+.pac-container{
+	background-color: ;
+
+}
+
+/*the suggestions are inside it as a DIV with the class "pac-item"*/
+.pac-item{
+
+}
+
+.pac-container, .pac-item {
+    
+}
+
+/*--End of Header Styling--*/
+
+
+
+
+
+
+
+
+
+
+
+
+/*--Time & Weather Results Sections Styling--*/
+
+#box2{
+    height: 100vh;
+    width: 100%;
+    background-image: url("http://www.mkwsurfaces.co.uk/wp-content/uploads/2016/04/dekton-zenith-thumb.jpg");
+    background-size: cover;
+    display: table;
+    background-attachment: fixed;
+}
+
+/*--S U N R I S E      &      S U N S E T      S T Y L I N G--*/ 
 
 
 .js-sunrise-conatiner,
@@ -44,10 +119,40 @@ footer{
 	height:75px;
 }
 
+/*           W E A T H E R     S T Y L I N G           */
+
+/*  HOURLY FORECAST  */
+
+.js-forecast-container{
+	max-height: 355px;
+    overflow-y: scroll;
+}
+
+.js-12hourforecast{
+ 	border: 2px solid grey;
+}
+
+/*--End of Time & Weather Results Sections Styling--*/
 
 
 
-/*TRAILS STYLING*/
+
+
+
+
+
+/*--Trails Results Section Styling--*/
+#box3{
+    height: 100vh;
+    width: 100%;
+    background-image: url("http://www.allwhitebackground.com/plain-vector-white-background.html");
+    background-size: cover;
+    display: table;
+    background-attachment: fixed;
+}
+
+
+/*--TRAILS STYLING--*/
 .js-trail{
 	border: 2px solid grey;
 }
@@ -65,7 +170,8 @@ footer{
 
 
 
-/*           M A P     S T Y L I N G   */         
+
+/*--M A P     S T Y L I N G--*/         
 .map, #map{
     height: 400px;
     width: 100%;
@@ -73,21 +179,14 @@ footer{
     border-radius: 5px;
     margin-bottom: 30px;
 }
+/*--End of Trails Results Section Styling--*/
 
 
 
 
 
-/*           W E A T H E R     S T Y L I N G           */
-
-/*  HOURLY FORECAST  */
-
-.js-forecast-container{
-	max-height: 355px;
-    overflow-y: scroll;
-}
-
-.js-12hourforecast{
- 	border: 2px solid grey;
+/*--Footer Styling--*/
+footer{
+	margin-top: 100px;
 }
 

@@ -173,10 +173,10 @@ function getHikingProjectData( lat, lng ){
 
 //Display Trail Info
 function displayAllTrails( trails ){
+	$(".js-trails-container").empty();
 	trails.forEach((trail, index) => { //loop iterator
 		const trailDifficultyLevel = displayTrailDifficulty( trail.difficulty );
 		const fillerTrailImg = fillMissingTrailImg( trail.imgMedium );
-		
 		$(".js-trails-container").append(`
 			<div class="js-trail">
 				<a href=${trail.url} target="_blank">
