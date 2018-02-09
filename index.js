@@ -83,38 +83,33 @@ function getSunriseSunsetAPIData( lat, lng ){
 	$.getJSON( ("http://api.wunderground.com/api/4259db9143b819d5/astronomy/q/"+lat+","+lng+".json"), function( data ){
 	}).done(function ( data ){
 		//console.log( data )
-		displaySunsetSunrise( data );
-		displayCurrentTime( data );
+		displayTimeSunsetSunrise( data );
 	}).fail(function ( data ){
 		alert('getSunriseSunsetAPIData function Ajax Call Failed!')
 	});
 }
 
-//Display Current Time
-function displayCurrentTime( timenow ){
-	$('.js-current-time').html(`
-			<h3 class="js-current-time-text">${timenow.moon_phase.current_time.hour}:${timenow.moon_phase.current_time.minute}</h3>
 
-		`
-	);
-}
-
-//Display Sunrise/Sunset Times
-function displaySunsetSunrise( suntimes ){
-	$('.js-sunrise-sunset').html(`
-		<div class="js-sunrise-conatiner col-6">	
-			<img class="js-sunrise-img" src="https://png.icons8.com/metro/1600/sunrise.png" alt="sunrise icon"></img>
-			<h3>Sunrise</h3>
+//Display Current Time & Sunrise/Sunset Times
+function displayTimeSunsetSunrise( suntimes ){
+	$('.js-time-sunrise-sunset').html(`
+		<div class="js-current-time-container col-4 parallaxtime">
+			<h3 class="js-current-time-text">${suntimes.moon_phase.current_time.hour}:${suntimes.moon_phase.current_time.minute}</h3>
+			<h3 class="suntimestext">Current Time</h3>
+		</div>
+		<div class="js-sunrise-conatiner col-4 parallaxsunrise">	
 			<h3 class="js-sunrise-time">${suntimes.sun_phase.sunrise.hour}:${suntimes.sun_phase.sunrise.minute}</h3>
+			<h3 class="suntimestext">Sunrise</h3>
 		</div>	
-		<div class="js-sunset-conatiner col-6">	
-			<img class="js-sunset-img" src="https://png.icons8.com/metro/1600/sunset.png" alt="sunset icon"></img>
-			<h3>Sunset</h3>
+		<div class="js-sunset-conatiner col-4 parallaxsunset">	
 			<h3 class="js-sunset-time">${suntimes.sun_phase.sunset.hour}:${suntimes.sun_phase.sunset.minute}</h3>
+			<h3 class="suntimestext">Sunset</h3>
 		</div	
 		`
 	);
 }
+
+
  
 //Get Hourly Forecast Data
 function getHourlyAPIData( lat, lng ){
@@ -130,20 +125,21 @@ function getHourlyAPIData( lat, lng ){
 //Display Hourly Forecast 
 function displayHourlyForecast( forecast ){
 	for(let i = 0; i < 12; i++){
-   		$('.js-forecast-container').append(`
-	 		<div class="js-12hourforecast">
-				<p class="js-hourly-hour">${forecast.hourly_forecast[i].FCTTIME.hour}:${forecast.hourly_forecast[i].FCTTIME.min}</p>
-				<p class="js-weekday">${forecast.hourly_forecast[i].FCTTIME.weekday_name_abbrev}</p>
-				<img class="js-forecast-icon" src=${forecast.hourly_forecast[i].icon_url} alt="${forecast.hourly_forecast[i].icon}"></img>
-				<p class="js-forecast-condition">${forecast.hourly_forecast[i].condition}</p>
-				<p class="js-hourly-temp">${forecast.hourly_forecast[i].temp.english}&#176;F</p>
-				<p class="js-hourly-precip">PRECIP ${forecast.hourly_forecast[i].temp.english}%</p>
-				<p class="js-hourly-humidity">HUMIDITY ${forecast.hourly_forecast[i].humidity}%</p>
-				<p class="js-hourly-wind">WIND ${forecast.hourly_forecast[i].wdir.dir} ${forecast.hourly_forecast[i].wspd.english} mph</p>
-			</div>
+   		$('.js-12hourforecast').append(`
+   			<tr class=".js-forecast-results-rows">				
+				<td>${forecast.hourly_forecast[i].FCTTIME.hour}:${forecast.hourly_forecast[i].FCTTIME.min}</td>
+				<td>${forecast.hourly_forecast[i].FCTTIME.weekday_name_abbrev}</td>
+				<td><img class="js-forecast-icon" src=${forecast.hourly_forecast[i].icon_url} alt="${forecast.hourly_forecast[i].icon}"></img></td>
+				<td>${forecast.hourly_forecast[i].condition}</td>
+				<td>${forecast.hourly_forecast[i].temp.english}&#176;F</td>
+				<td>${forecast.hourly_forecast[i].temp.english}%</td>
+				<td>${forecast.hourly_forecast[i].humidity}%</td>
+				<td>${forecast.hourly_forecast[i].wdir.dir} ${forecast.hourly_forecast[i].wspd.english} mph</td>	
+			</tr>
 		`)
 	}
 }
+
 
 
 //H I K I N G       P R O J E C T       C O D E//
@@ -180,11 +176,9 @@ function displayAllTrails( trails ){
 		$(".js-trails-container").append(`
 			
 
-			
+			<div class="row">
+
 				<div class="col-4">
-
-
-
 					<div class="js-trail">
 						<a href=${trail.url} target="_blank">
 							<h3 class="js-trailname">${trail.name}</h3>
@@ -200,15 +194,10 @@ function displayAllTrails( trails ){
 						<p class="js-trailascentdescent">${trail.ascent}' Ascent     ${trail.descent}' Descent</p>
 						<p class="js-trailsummary">${trail.summary}</p>
 					</div>
-
-
-
 				</div>
-			
 
-
-			<div id="map${index}" class="map"></div>
-			
+				<div id="map${index}" class="map col-6"></div>
+			</div>
 		`);
 		const trailMap = initMap( trail.latitude, trail.longitude, index );
 	});
@@ -314,7 +303,7 @@ $('#scroll-to-top').click(function () {
 
       //scroll to top of window position
       scrollTop: 0
-    }, 500);
+    }, 2000);
 
     // stop anchor link behavior
     return false;

@@ -172,8 +172,6 @@ body{
     color: gray
 }
 
-
-
 /*--End of Header Styling--*/
 
 
@@ -192,30 +190,76 @@ body{
 #box2{
     height: 100vh;
     width: 100%;
-    background-image: url("http://www.mkwsurfaces.co.uk/wp-content/uploads/2016/04/dekton-zenith-thumb.jpg");
-    background-size: cover;
+    background-color: white;
+    opacity: .7;
     display: table;
     background-attachment: fixed;
 }
 
-/*--S U N R I S E      &      S U N S E T      S T Y L I N G--*/ 
+/*--Current Time, Sunset, & Sunrise Boxes Styling--*/ 
 
+.js-time-sunrise-sunset{
+    margin-top: 30px;
+}
 
+.js-current-time-container,
 .js-sunrise-conatiner,
 .js-sunset-conatiner{
-	border: solid 2px grey;
+	text-align: center;
+    border: solid 2px grey;
+    width: 230px;
+    height:230px;
+    padding: 0px;
+    margin: 10px 30px;
 }
 
-
-.js-sunrise-img,
-.js-sunset-img{
-	width: 75px;
-	height:75px;
+.parallaxtime{
+    background-image: url("https://icdn5.digitaltrends.com/image/garmin-forerunner-35-gps-watch-review-1-800x533-c.jpg?ver=1");
+    min-height: 230px;
+    opacity: .7; 
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
 }
 
-/*           W E A T H E R     S T Y L I N G           */
+.parallaxsunrise{
+    background-image: url("https://robertfinkelstein.files.wordpress.com/2009/06/beautiful-sunrise.jpg");
+    min-height: 230px;
+    opacity: .7; 
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
 
-/*  HOURLY FORECAST  */
+.parallaxsunset{
+    background-image: url("https://i.imgur.com/V9fHvOE.png");
+    min-height: 230px;
+    opacity: .7; 
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+.js-current-time-text,
+.js-sunrise-time,
+.js-sunset-time{
+    font-family: 'Orbitron', sans-serif;
+    font-size: 50px;
+    color: white;
+}
+
+.suntimestext{
+    color:white;
+    font-size: 18px;
+}
+
+/*--End of Current Time, Sunset, & Sunrise Boxes Styling--*/
+
+
+/*12 Hour Forecast Results Styling--*/
 
 .js-forecast-container{
 	max-height: 355px;
@@ -223,13 +267,17 @@ body{
 }
 
 .js-12hourforecast{
- 	border: 2px solid grey;
+ 	border-collapse: collapse;
+    width: 100%;
+    background: white;
+    border-radius: 0.25em;
 }
 
-/*--End of Time & Weather Results Sections Styling--*/
-
-
-
+.js-forecast-icon{
+    -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
+    filter: grayscale(100%);
+}
+/*--End of 12 Hour Forecast Results Styling--*/
 
 
 
@@ -239,7 +287,7 @@ body{
 #box3{
     height: 100vh;
     width: 100%;
-    background-image: url("http://www.allwhitebackground.com/plain-vector-white-background.html");
+    background-image: url("http://www.mkwsurfaces.co.uk/wp-content/uploads/2016/04/dekton-zenith-thumb.jpg");
     background-size: cover;
     display: table;
     background-attachment: fixed;

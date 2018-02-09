@@ -13,8 +13,8 @@
 	<link rel="stylesheet" type="text/css" href="index.css"/>
 
 	<!-- Google Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet">
-	<link href="https://fonts.googleapis.com/css?family=Shrikhand" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css?family=Oswald" rel="stylesheet"><!--body font-->
+	<link href="https://fonts.googleapis.com/css?family=Orbitron" rel="stylesheet"><!--number font-->
 </head>
 
 
@@ -38,18 +38,49 @@
 
 
 	        <div id="box2">
-	            <h2>Current Time</h2>
-					<div class="js-current-time"></div>
+	        	
 
-					<h2>Sunrise and Sunset</h2>
-					<div class="js-sunrise-sunset"></div>
+	        	<div class="row">
+	        		<div class="col-12">
+			            
 
-					<h2>12 Hour Forecast</h2>
-					<div class="js-current-weather-container"> </div>
+	        			<div class="row">
+	        				<div class="col-12">
+								<div class="js-time-sunrise-sunset"></div>
+							</div>	
+						</div>
+						
 
-					<div class="js-forecast-container row"> </div>
+							
 
-					<div id="js-pictures-container"></div>
+						<h2>12 Hour Forecast</h2>
+						<div class="js-current-weather-container"> </div>
+
+						
+						<div class="row">
+							<div class="col-12">
+								<div class="js-forecast-container row"> 
+									<table class="js-12hourforecast" border="1">
+							 			<thread>
+							 				<tr>
+								 				<th scope="col" colspan="2">TIME</th>
+								 				<th scope="col" colspan="2">DESCRIPTION</th>
+								 				<th scope="col">TEMP</th>
+								 				<th scope="col">PRECIP</th>
+								 				<th scope="col">HUMIDITY</th>
+							 					<th scope="col">WIND</th>
+							 				</tr>	
+							 			</thread>
+							 			<tbody>
+							 			</tbody>
+		 							</table>
+								</div>
+							</div>
+						</div>
+
+
+					</div>		
+				</div>			
 	        </div>
         
 
