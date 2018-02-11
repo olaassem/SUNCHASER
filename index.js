@@ -84,6 +84,7 @@ function getSunriseSunsetAPIData( lat, lng ){
 	}).done(function ( data ){
 		//console.log( data )
 		displayTimeSunsetSunrise( data );
+		currentTimeImage( data );
 	}).fail(function ( data ){
 		alert('getSunriseSunsetAPIData function Ajax Call Failed!')
 	});
@@ -110,6 +111,33 @@ function displayTimeSunsetSunrise( suntimes ){
 }
 
 
+//Dynamic Current Time Background Image
+function currentTimeImage( currentTime ){
+	switch (currentTime.moon_phase.current_time.hour) {
+		case '19': 
+		case '20':
+		case '21':
+		case '22':
+		case '23':
+		case '24':
+		case '0':
+		case '1':
+		case '2':
+		case '3':
+		case '4':
+		case '5':
+		case '6':
+			$('.parallaxtime').css('background-image', 'url(https://ak7.picdn.net/shutterstock/videos/12509054/thumb/1.jpg)');
+			break;
+		case '8':
+		case '9':
+		case '10':
+		case '11':
+			$('.parallaxtime').css('background-image', 'url(https://ssl.c.photoshelter.com/img-get2/I0000.NuipjBIn4E/fit=1000x750/rolling-hills-and-mountains-in-northern-california.jpg)');
+			break;
+	}
+}
+
  
 //Get Hourly Forecast Data
 function getHourlyAPIData( lat, lng ){
@@ -130,7 +158,7 @@ function displayHourlyForecast( forecast ){
 				<td>${forecast.hourly_forecast[i].FCTTIME.hour}:${forecast.hourly_forecast[i].FCTTIME.min}</td>
 				<td>${forecast.hourly_forecast[i].FCTTIME.weekday_name_abbrev}</td>
 				<td><img class="js-forecast-icon" src=${forecast.hourly_forecast[i].icon_url} alt="${forecast.hourly_forecast[i].icon}"></img></td>
-				<td>${forecast.hourly_forecast[i].condition}</td>
+				<td class="condition">${forecast.hourly_forecast[i].condition}</td>
 				<td>${forecast.hourly_forecast[i].temp.english}&#176;F</td>
 				<td>${forecast.hourly_forecast[i].temp.english}%</td>
 				<td>${forecast.hourly_forecast[i].humidity}%</td>
@@ -159,6 +187,7 @@ function getHikingProjectData( lat, lng ){
 	}).done( function( data ){
 		//console.log( data );
 		displayAllTrails( data.trails );
+		numberOfTrailsFound( data );
 		//console.log(data.trails);
 	}).fail( function ( data ){
 		alert( "getHikingProjectData Ajax call failed");
@@ -166,18 +195,20 @@ function getHikingProjectData( lat, lng ){
 }
 
 
+//Display number of trails found
+function numberOfTrailsFound( trails ){
+	$('.trailsfound').html(`${trails.trails.length} TRAILS FOUND`);
+}
 
-//Display Trail Info
+
+//Display trail info
 function displayAllTrails( trails ){
 	$(".js-trails-container").empty();
-	trails.forEach((trail, index) => { //loop iterator
+	trails.forEach((trail, index) => {
 		const trailDifficultyLevel = displayTrailDifficulty( trail.difficulty );
 		const fillerTrailImg = fillMissingTrailImg( trail.imgMedium );
 		$(".js-trails-container").append(`
-			
-
 			<div class="row">
-
 				<div class="col-4">
 					<div class="js-trail">
 						<a href=${trail.url} target="_blank">
@@ -196,7 +227,9 @@ function displayAllTrails( trails ){
 					</div>
 				</div>
 
-				<div id="map${index}" class="map col-6"></div>
+				<div class="col-6">
+					<div id="map${index}" class="map"></div>
+				</div>
 			</div>
 		`);
 		const trailMap = initMap( trail.latitude, trail.longitude, index );
@@ -207,31 +240,30 @@ function displayAllTrails( trails ){
 
 //Replace trail difficulty color value with description text
 function displayTrailDifficulty( traildifflevel ){
-  // TODO: use switch statement (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/switch)
-  //switch (traildifflevel) {
-  //  case 'green':
-  //    return "Easy: walking with no obstacles and low grades";
-  //    
-  //  case 'greenBlue':
-  //    return "Easy/Intermediate";
-  //}
-  
-	if( traildifflevel === "green" ){
+	switch (traildifflevel) {
+		case 'green':
 		return "Easy: walking with no obstacles and low grades";
-	}if( traildifflevel === "greenBlue" ){
+
+		case 'greenBlue':
 		return "Easy/Intermediate";
-	}if( traildifflevel === "blue" ){
+
+		case 'blue':
 		return "Intermediate: 10% grade, small rocks and roots, easy scrambling";
-	}if( traildifflevel === "blueBlack" ){
+
+		case 'blueBlack':
 		return "Intermediate/Difficult";
-	}if( traildifflevel === "black" ){
+  
+		case 'black':
 		return "Difficult: 15% grade, large obstacles, possible scrambling or climbing";
-	}if( traildifflevel === "blackBack" ){
-		return'Extremely Difficult: 20% grade, 15+" obstacles, many harder sections';
-	}if( traildifflevel === "" ){
-		return"No rating available";
-	};
+
+		case 'blackBack':
+		return 'Extremely Difficult: 20% grade, 15+" obstacles, many harder sections';
+
+		case '':
+		return 'No rating available';
+	}
 }
+
 
 //Replace empty trail images with a filler image
 function fillMissingTrailImg( trailImg ){
@@ -274,20 +306,46 @@ function initMap( lat, lng, index ){
 }
 
 
+//On browser load, hide #box2 & #box3
+//Will be triggered after CSS loads
+function init(){
+	$('#box2').hide();
+	$('#box3').hide();
+}
+init();
 
 
+
+//Animate on submit button
+$('#locationField').on('click', '#searchbutton', function(){
+		$('#box2').show();
+		$('#box3').show();
+    	$('html, body').animate({
+        	scrollTop: $("#box2").offset().top
+    	}, 2100);
+});
+
+
+//Animate HTML on press ENTER key event
+$('#autocomplete').keyup(function( event ) {
+    if( event.keyCode === 13 ) {  // the ENTER key code
+        $('#box2').show();
+    	$('#box3').show();
+    	//$('footer').removeClass('hidden');	
+    	$('html, body').animate({
+        	scrollTop: $("#box2").offset().top
+    	}, 2100);
+    }
+});
 
 
 //Scroll-to-top button function
 // 1. lets first listen for the scroll event
 $(window).scroll(function(){
-
     // top value in this case 0
     let wScroll = $(this).scrollTop();
-  
     // determine when to show button
     let showScrollButton = 200;
-
     // fadein / fadeout back to  top button
     if (wScroll > showScrollButton) {
         $('#scroll-to-top').fadeIn();
@@ -300,11 +358,9 @@ $(window).scroll(function(){
 //Scroll-to-top on-click function
 $('#scroll-to-top').click(function () {
     $('body,html').animate({
-
       //scroll to top of window position
       scrollTop: 0
     }, 2000);
-
     // stop anchor link behavior
     return false;
 });

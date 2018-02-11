@@ -27,7 +27,8 @@
 			            <h1 class="logo">SUNCHASER</h1>
 			            <p class="intro">Concise and catchy app description goes here!</p>
 			        	<div id="locationField">
-							<input id="autocomplete" placeholder="Search by trail name, city, or address" type="text" />
+							<input id="autocomplete" placeholder="Search by trail name, address, or city." type="text" />
+							<button type="submit" id="searchbutton">Search</button>
 						</div>
 					</div>	
 				</div>
@@ -37,7 +38,7 @@
         <main role="main">
 
 
-	        <div id="box2">
+	        <div id="box2" class="hidden">
 	        	
 
 	        	<div class="row">
@@ -51,7 +52,7 @@
 						</div>
 						
 
-							
+
 
 						<h2>12 Hour Forecast</h2>
 						<div class="js-current-weather-container"> </div>
@@ -84,15 +85,11 @@
 	        </div>
         
 
-        <div id="box3">
-            	<h2>Nearby Trails</h2>
-
+        <div id="box3" class="hidden">
             	<div class="row">
             		<div class="col-12">
-
-
-					<div class="js-trails-container"><div>
-
+            			<h2 class="trailsfound"></h2>
+						<div class="js-trails-container"><div>
 
 					</div>
 				</div>
@@ -103,7 +100,7 @@
 
         <a id="scroll-to-top" href="#">TOP</a>
 
-	<footer role='contentinfo'>
+	<footer role='contentinfo' class="hidden">
 		<p>OLA ASSEM | 2018</p>
 	</footer>
 

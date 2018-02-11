@@ -1,9 +1,3 @@
-/*    jQuery '.hidden' Styles    */
-
-.hidden{
-    display: none;
-}
-
 
 /*--Universal Styling--*/
 
@@ -214,19 +208,20 @@ body{
 }
 
 .parallaxtime{
-    background-image: url("https://icdn5.digitaltrends.com/image/garmin-forerunner-35-gps-watch-review-1-800x533-c.jpg?ver=1");
+    background-image: url("https://cdn.runrepeat.com/wp-content/uploads/2014/08/Layer-26.jpg");
     min-height: 230px;
-    opacity: .7; 
+    opacity: .8; 
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+
 }
 
 .parallaxsunrise{
     background-image: url("https://robertfinkelstein.files.wordpress.com/2009/06/beautiful-sunrise.jpg");
     min-height: 230px;
-    opacity: .7; 
+    opacity: .8; 
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -236,7 +231,7 @@ body{
 .parallaxsunset{
     background-image: url("https://i.imgur.com/V9fHvOE.png");
     min-height: 230px;
-    opacity: .7; 
+    opacity: .8; 
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -262,8 +257,10 @@ body{
 /*12 Hour Forecast Results Styling--*/
 
 .js-forecast-container{
-	max-height: 355px;
+	max-height: 320px;
     overflow-y: scroll;
+    border: 3px grey solid;
+    margin-bottom: 30px;
 }
 
 .js-12hourforecast{
@@ -272,6 +269,12 @@ body{
     background: white;
     border-radius: 0.25em;
 }
+
+tr {
+    border-bottom: 1px solid black;
+    border-top: 1px solid black;
+    border-collapse: collapse;
+}​
 
 .js-forecast-icon{
     -webkit-filter: grayscale(100%); /* Safari 6.0 - 9.0 */
@@ -287,7 +290,8 @@ body{
 #box3{
     height: 100vh;
     width: 100%;
-    background-image: url("http://www.mkwsurfaces.co.uk/wp-content/uploads/2016/04/dekton-zenith-thumb.jpg");
+    background-color: lightgrey;
+    background-image: url("");
     background-size: cover;
     display: table;
     background-attachment: fixed;
@@ -297,6 +301,7 @@ body{
 /*--TRAILS STYLING--*/
 .js-trail{
 	border: 2px solid black;
+    width: 300px;
 }
 
 .crop {
