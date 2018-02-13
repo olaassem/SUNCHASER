@@ -194,6 +194,8 @@ body{
 
 .js-time-sunrise-sunset{
     margin-top: 30px;
+/*  display: flex;
+    justify-content: space-between;  */
 }
 
 .js-current-time-container,
@@ -210,7 +212,7 @@ body{
 .parallaxtime{
     background-image: url("https://cdn.runrepeat.com/wp-content/uploads/2014/08/Layer-26.jpg");
     min-height: 230px;
-    opacity: .8; 
+    opacity: .9; 
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -219,9 +221,9 @@ body{
 }
 
 .parallaxsunrise{
-    background-image: url("https://robertfinkelstein.files.wordpress.com/2009/06/beautiful-sunrise.jpg");
+    background-image: url("https://i.imgur.com/NLlD8eM.jpg");
     min-height: 230px;
-    opacity: .8; 
+    opacity: .9; 
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -229,9 +231,9 @@ body{
 }
 
 .parallaxsunset{
-    background-image: url("https://i.imgur.com/V9fHvOE.png");
+    background-image: url("https://i.imgur.com/Kijj7Xn.jpg");
     min-height: 230px;
-    opacity: .8; 
+    opacity: .9; 
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
@@ -298,10 +300,16 @@ tr {
 }
 
 
+.eachtrailcontainer{
+    margin-bottom: 25px;
+    border: 2px solid grey;
+}
+
 /*--TRAILS STYLING--*/
 .js-trail{
-	border: 2px solid black;
+
     width: 300px;
+    margin-right: 10px;
 }
 
 .crop {
@@ -320,11 +328,10 @@ tr {
 
 /*--M A P     S T Y L I N G--*/         
 .map, #map{
-    height: 400px;
+    height: 500px;
     width: 100%;
     border: 2px solid grey;
-    border-radius: 5px;
-    margin-bottom: 30px;
+
 }
 /*--End of Trails Results Section Styling--*/
 
@@ -347,6 +354,11 @@ tr {
 
 /*--Footer Styling--*/
 footer{
-	margin-top: 100px;
+	margin-top: 30px;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    color: white;
+    text-align: center;
 }
 

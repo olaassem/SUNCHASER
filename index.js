@@ -135,6 +135,13 @@ function currentTimeImage( currentTime ){
 		case '11':
 			$('.parallaxtime').css('background-image', 'url(https://ssl.c.photoshelter.com/img-get2/I0000.NuipjBIn4E/fit=1000x750/rolling-hills-and-mountains-in-northern-california.jpg)');
 			break;
+		case '12':
+		case '13':
+		case '14':
+		case '15':
+		case '16':
+		case '17':
+		case '18':
 	}
 }
 
@@ -208,27 +215,30 @@ function displayAllTrails( trails ){
 		const trailDifficultyLevel = displayTrailDifficulty( trail.difficulty );
 		const fillerTrailImg = fillMissingTrailImg( trail.imgMedium );
 		$(".js-trails-container").append(`
-			<div class="row">
-				<div class="col-4">
-					<div class="js-trail">
-						<a href=${trail.url} target="_blank">
-							<h3 class="js-trailname">${trail.name}</h3>
-						</a>
-						<p class="js-traillocation">${trail.location}</p>
-						<div class="crop"
-							<a href=${trail.url} target="_blank">
-								<img class="js-trailimg" src=${fillerTrailImg} alt="image of trail"></img>
-							</a>
-						</div>	
-						<h3 class="js-traillength">${trail.length} miles</h3>
-						<p class="js-traildifficulty">${trailDifficultyLevel}</p>
-						<p class="js-trailascentdescent">${trail.ascent}' Ascent     ${trail.descent}' Descent</p>
-						<p class="js-trailsummary">${trail.summary}</p>
-					</div>
-				</div>
 
-				<div class="col-6">
-					<div id="map${index}" class="map"></div>
+			<div class="eachtrailcontainer">
+				<div class="row">
+					<div class="col-4">
+						<div class="js-trail">
+							<a href=${trail.url} target="_blank">
+								<h3 class="js-trailname">${trail.name}</h3>
+							</a>
+							<p class="js-traillocation">${trail.location}</p>
+							<div class="crop"
+								<a href=${trail.url} target="_blank">
+									<img class="js-trailimg" src=${fillerTrailImg} alt="image of trail"></img>
+								</a>
+							</div>	
+							<h3 class="js-traillength">${trail.length} miles</h3>
+							<p class="js-traildifficulty">${trailDifficultyLevel}</p>
+							<p class="js-trailascentdescent">${trail.ascent}' Ascent     ${trail.descent}' Descent</p>
+							<p class="js-trailsummary">${trail.summary}</p>
+						</div>
+					</div>
+
+					<div class="col-8">
+						<div id="map${index}" class="map"></div>
+					</div>
 				</div>
 			</div>
 		`);
@@ -273,6 +283,11 @@ function fillMissingTrailImg( trailImg ){
 		return trailImg;
 	}
 }
+
+
+//pagination
+//for loop  for ex. 10 times
+
 
 
 //G O O G L E    M A P S    C O D E//
