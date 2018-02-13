@@ -114,6 +114,7 @@ function displayTimeSunsetSunrise( suntimes ){
 //Dynamic Current Time Background Image
 function currentTimeImage( currentTime ){
 	switch (currentTime.moon_phase.current_time.hour) {
+		//night
 		case '19': 
 		case '20':
 		case '21':

@@ -4,6 +4,7 @@
 *{
 	box-sizing: border-box;
 	font-family: 'Oswald', sans-serif;
+    text-decoration: none;
 }
 
 body{
@@ -307,7 +308,6 @@ tr {
 
 /*--TRAILS STYLING--*/
 .js-trail{
-
     width: 300px;
     margin-right: 10px;
 }
@@ -323,6 +323,25 @@ tr {
 	width: 300px;
 }
 
+.js-trailname{
+    font-size: 25px;
+    text-decoration: none;
+    margin-bottom: 5px;
+}
+
+.js-trailname:hover{
+    color: red;
+}
+
+
+.js-traillength,
+.js-traildifficulty,
+.js-trailascentdescent,
+.js-trailsummary{
+    margin-bottom: 10px;
+    margin-top: 10px;
+}
+
 
 
 
@@ -331,8 +350,12 @@ tr {
     height: 500px;
     width: 100%;
     border: 2px solid grey;
+    margin-left: 20px;
+    margin-top: 10px;
+    margin-bottom: 10px;
 
-}
+
+
 /*--End of Trails Results Section Styling--*/
 
 
@@ -357,7 +380,7 @@ footer{
 	margin-top: 30px;
     left: 0;
     bottom: 0;
-    width: 100%;
+    width: 100%;   
     color: white;
     text-align: center;
 }
