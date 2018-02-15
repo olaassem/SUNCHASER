@@ -114,10 +114,13 @@ function displayTimeSunsetSunrise( suntimes ){
 //Dynamic Current Time Background Image
 function currentTimeImage( currentTime ){
 	switch (currentTime.moon_phase.current_time.hour) {
-		//night
+		//evening
 		case '19': 
 		case '20':
 		case '21':
+			$('.parallaxtime').css('background-image', 'url(https://i.imgur.com/3zMRTlv.jpg)');
+			break;
+		//night	
 		case '22':
 		case '23':
 		case '24':
@@ -128,14 +131,17 @@ function currentTimeImage( currentTime ){
 		case '4':
 		case '5':
 		case '6':
-			$('.parallaxtime').css('background-image', 'url(https://ak7.picdn.net/shutterstock/videos/12509054/thumb/1.jpg)');
+			$('.parallaxtime').css('background-image', 'url(https://i.imgur.com/EJfP3PA.jpg)');
 			break;
+		//morning	
+		case '7':
 		case '8':
 		case '9':
 		case '10':
 		case '11':
-			$('.parallaxtime').css('background-image', 'url(https://ssl.c.photoshelter.com/img-get2/I0000.NuipjBIn4E/fit=1000x750/rolling-hills-and-mountains-in-northern-california.jpg)');
+			$('.parallaxtime').css('background-image', 'url(https://i.imgur.com/CkiZkBv.jpg)');
 			break;
+		//afternoon
 		case '12':
 		case '13':
 		case '14':
@@ -143,6 +149,8 @@ function currentTimeImage( currentTime ){
 		case '16':
 		case '17':
 		case '18':
+			$('.parallaxtime').css('background-image', 'url(http://www.wallpapers13.com/wp-content/uploads/2016/03/Lake-sun-rays-clear-lake-water-evaporation-from-the-green-forest-the-surrounding-mountains-sky-915x515.jpg)');
+			break;
 	}
 }
 
