@@ -168,12 +168,13 @@ function getHourlyAPIData( lat, lng ){
 
 //Display Hourly Forecast 
 function displayHourlyForecast( forecast ){
+	$('.clearresults').html("");
 	for(let i = 0; i < 12; i++){
-   		$('.js-12hourforecast').append(`
+   		$('.clearresults').append(`
    			<tr class=".js-forecast-results-rows">				
 				<td>${forecast.hourly_forecast[i].FCTTIME.hour}:${forecast.hourly_forecast[i].FCTTIME.min}</td>
 				<td>${forecast.hourly_forecast[i].FCTTIME.weekday_name_abbrev}</td>
-				<td><img class="js-forecast-icon" src=${forecast.hourly_forecast[i].icon_url} alt="${forecast.hourly_forecast[i].icon}"></img></td>
+				<td><img class="js-forecast-icon" style="float:right" src=${forecast.hourly_forecast[i].icon_url} alt="${forecast.hourly_forecast[i].icon}"></img></td>
 				<td class="condition">${forecast.hourly_forecast[i].condition}</td>
 				<td>${forecast.hourly_forecast[i].temp.english}&#176;F</td>
 				<td>${forecast.hourly_forecast[i].temp.english}%</td>
