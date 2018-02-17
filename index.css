@@ -353,7 +353,7 @@ background-color:blue;
 
 footer{
 	height: 60px;
-	background-color: #999;
+	background-color: #4d4d4d;
 	color: white;
 	width: 100%
 	margin-bottom: 0px;
@@ -366,9 +366,20 @@ footer{
 	display: flex;
 	align-items: center;
 	justify-content: center;
-    padding: 10px;
+    padding: 0px;
     margin: 0px;
     float: left;
+}
+
+.ola{
+	font-family: 'Roboto', sans-serif;
+	text-decoration: none;
+	color: white;
+}
+
+.ola:hover{
+	color:yellow;
+	font-size: 20px;
 }
 
 .api-logos{
@@ -380,7 +391,7 @@ footer{
 .hikingprojectlogo,
 .googlemapslogo,
 .wundergroundlogo{
-	margin-right: 10px;
+	margin-right: 20px;
 	margin-top: 10px;
 }
 
