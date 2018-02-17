@@ -352,9 +352,9 @@ background-color:blue;
 /*--Footer Styling--*/
 
 footer{
-	height: 60px;
-	background-color: #4d4d4d;
-	color: white;
+	height: 55px;
+	background-color: #5F5E59;
+	color: #E2DEC6;
 	width: 100%
 	margin-bottom: 0px;
 	padding-bottom: 0px;
@@ -369,17 +369,33 @@ footer{
     padding: 0px;
     margin: 0px;
     float: left;
+
+}
+
+.c2018{
+	font-size: 16px;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+ 
+}
+
+.pipe{
+	margin-left: 6px;
 }
 
 .ola{
-	font-family: 'Roboto', sans-serif;
+	font-size: 16px;
 	text-decoration: none;
-	color: white;
+	color: #E2DEC6;
+	margin-left: 2px;
+	padding: 4px 8px;
+	margin-bottom: 0px;
 }
 
 .ola:hover{
-	color:yellow;
-	font-size: 20px;
+	color: #ffff66;
+	font-weight: bold;
+	
 }
 
 .api-logos{
@@ -389,7 +405,6 @@ footer{
 }
 
 .hikingprojectlogo,
-.googlemapslogo,
 .wundergroundlogo{
 	margin-right: 20px;
 	margin-top: 10px;
@@ -404,4 +419,8 @@ footer{
 .wundergroundlogo{
 	width:60px;
 	height:40px;
+}
+
+.googlemapslogo{
+	margin-top: 10px;	
 }
