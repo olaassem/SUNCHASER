@@ -197,6 +197,7 @@ body{
     border-radius: 5px;
     border: solid 2px grey;
     box-shadow: 0 8px 6px -6px #2a2a2a;
+    width:95%;
 }
 
 .js-12hourforecast{
@@ -263,6 +264,7 @@ background-color:blue;
     width: 300px;
     margin-right: auto;
     margin-left: auto;
+    padding-left: 15px;
 }
 
 /*

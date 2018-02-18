@@ -52,6 +52,9 @@
   width: 100%;
 }
 
+.stack{
+  display: block;
+}
 
 
 /* Non-mobile, grid */

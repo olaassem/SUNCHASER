@@ -165,8 +165,8 @@ function currentTimeImage( currentTime ){
  
 //Get Hourly Forecast Data
 function getHourlyAPIData( lat, lng ){
-	$.getJSON( ("http://api.wunderground.com/api/4259db9143b819d5/hourly/q/"+lat+","+lng+".json"), function( data ){
-	}).done(function ( data ){
+	$.getJSON( ("http://api.wunderground.com/api/4259db9143b819d5/hourly/q/"+lat+","+lng+".json"))
+		.done(function ( data ){
 		//console.log( data )
 		displayHourlyForecast( data);
 	}).fail(function ( data ){
@@ -180,20 +180,20 @@ function displayHourlyForecast( forecast ){
 	for(let i = 0; i < 12; i++){
    		$('.clearresults').append(`
    			<tr class=".js-forecast-results-rows">				
-				<td>${forecast.hourly_forecast[i].FCTTIME.hour}:${forecast.hourly_forecast[i].FCTTIME.min}</td>
-				<td>${forecast.hourly_forecast[i].FCTTIME.weekday_name_abbrev}</td>
-				<td><img class="js-forecast-icon" style="float:right" src=${forecast.hourly_forecast[i].icon_url} alt="${forecast.hourly_forecast[i].icon}"></img></td>
-				<td class="condition">${forecast.hourly_forecast[i].condition}</td>
+				<td class="stack">${forecast.hourly_forecast[i].FCTTIME.hour}:${forecast.hourly_forecast[i].FCTTIME.min}</td>
+				<td class="stack" style="color:grey">${forecast.hourly_forecast[i].FCTTIME.weekday_name_abbrev}</td>
+				<td><img class="js-forecast-icon" src=${forecast.hourly_forecast[i].icon_url} alt="${forecast.hourly_forecast[i].icon}"></img></td>
 				<td>${forecast.hourly_forecast[i].temp.english}&#176;F</td>
 				<td>${forecast.hourly_forecast[i].temp.english}%</td>
-				<td>${forecast.hourly_forecast[i].humidity}%</td>
-				<td>${forecast.hourly_forecast[i].wdir.dir} ${forecast.hourly_forecast[i].wspd.english} mph</td>	
+				<td class="removemobile">${forecast.hourly_forecast[i].humidity}%</td>
+				<td class="removemobile">${forecast.hourly_forecast[i].wdir.dir} ${forecast.hourly_forecast[i].wspd.english} mph</td>	
 			</tr>
 		`)
 	}
 }
 
 
+//<td class="condition">${forecast.hourly_forecast[i].condition}</td>
 
 //H I K I N G       P R O J E C T       C O D E//
 
