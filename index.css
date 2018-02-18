@@ -379,15 +379,13 @@ footer{
 
 }
 
+.github-logo,
 .linkedin-logo{
-    width:11px;
-    height:11px;
+    width:15px;
+    height:15px;
     margin-right: 3px;
 }
 
-.linkedin-logo:hover{
-    border: 1px solid #ffff66;    
-}
 
 .ola{
 	font-size: 16px;
@@ -396,12 +394,6 @@ footer{
 	margin-left: 2px;
 	padding: 4px 8px 4px 0px;
 	margin-bottom: 0px;
-}
-
-.ola:hover{
-	color: #ffff66;
-	font-weight: bold;
-	
 }
 
 .c2018{
@@ -424,13 +416,13 @@ footer{
 
 .hikingprojectlogo,
 .googlemapslogo{
-	width:40px;
-	height:40px;
+	width:32px;
+	height:32px;
 }
 
 .wundergroundlogo{
-	width:60px;
-	height:40px;
+	width:50px;
+	height:32px;
 }
 
 .googlemapslogo{
