@@ -3,6 +3,8 @@
 
 *{
 	box-sizing: border-box;
+	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
+	-moz-box-sizing: border-box;    /* Firefox, other Gecko */
 	font-family: 'Oswald', sans-serif;
     text-decoration: none;
 }
@@ -32,11 +34,9 @@ body{
 	height: 100%;
 	text-align: center;
 	padding: 0px;
-	/* border: beige 3px solid; */
 	margin-left: auto;
 	margin-right: auto;
 }
-
 
 .logo{
     font-size: 52px;
@@ -44,7 +44,6 @@ body{
     letter-spacing:8px;
     margin: 0px;
     text-align: center;
-
 }
 
 .intro{
@@ -55,13 +54,11 @@ body{
 	width: 100%;
 }
 
-
 #locationField{
     color:white;
     margin: 0px;
 	width:100%;
 }
-
 
 #autocomplete{
 	width:75%;
@@ -70,21 +67,6 @@ body{
     padding: 5px 10px;
     border-radius: 4px;
 }
-
-/*
-#searchbutton{
-  display: inline-block;
-  min-width: 100px;
-  margin: 15px 5px;
-  padding: 4px 6px 6px;
-  font-size: 16px;
-  border-radius: 3px;
-  box-shadow: inset 0 -1px 0 1px rgba(0,0,0,.1), inset 0 -10px 20px rgba(0,0,0,.1);
-  cursor: pointer;
-  background-color: white;
-  color: grey;
-}
-*/
 
 #searchbutton {
 	margin: 20px;
@@ -112,17 +94,7 @@ body{
 	top: 2px;
 }
 
-
-
-
-
-
 /*--End of Header Styling--*/
-
-
-
-
-
 
 
 
@@ -141,8 +113,7 @@ body{
 
 .js-time-sunrise-sunset{
     margin-top: 50px;
-/*  display: flex;
-    justify-content: space-between;  */
+    padding: 0px;
 }
 
 .js-current-time-container,
@@ -151,10 +122,13 @@ body{
 	text-align: center;
     border: solid 2px #D3D3D3;
     box-shadow: 0 8px 6px -6px #2a2a2a;
-    width: 230px;
+    width: 93%;
     height:230px;
     padding: 0px;
-    margin: 10px 30px;
+    margin-right: auto;
+    margin-left: auto;
+    margin-bottom: 15px
+    
 }
 
 .parallaxtime{
@@ -212,6 +186,8 @@ body{
 
 .twelve-hr-frcst-header{
 	margin-top: 40px;
+	text-align: center;
+	color: #5F5E59;
 }
 
 .js-forecast-container{
@@ -255,9 +231,6 @@ background-color:blue;
 /*--End of 12 Hour Forecast Results Styling--*/
 
 
-
-
-
 /*--Trails Results Section Styling--*/
 #box3{
     height: 100vh;
@@ -268,10 +241,18 @@ background-color:blue;
     background-attachment: fixed;
 }
 
+.removepadding{
+	padding-right: 0 !important;
+	padding-left: 0 !important;
+}
+
+.trailsfound{
+	text-align: center;
+	color: #5F5E59;
+}
 
 .eachtrailcontainer{
     margin-bottom: 25px;
-    border: 2px solid grey;
     border-radius: 5px;
     background-color: grey;
     color: white;
@@ -280,28 +261,50 @@ background-color:blue;
 /*--TRAILS STYLING--*/
 .js-trail{
     width: 300px;
-    margin-right: 10px;
+    margin-right: auto;
+    margin-left: auto;
 }
+
+/*
+.js-trail {
+    width: 300px;
+    margin-right: auto;
+    margin-left: auto;
+    TEXT-ALIGN: center;
+    background-color: blue;
+    padding: 5px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+}
+*/
 
 .crop {
 	height: 200px;
-	width: 300px;
+	width: 290px;
 	overflow: hidden;
 }
 
 .crop img {
 	height: auto;
-	width: 300px;
+	width: 280px;
 }
 
 .js-trailname{
+	line-height: 101%;
     font-size: 25px;
     text-decoration: none;
     margin-bottom: 5px;
+    text-transform: uppercase;
+    color: white;
 }
 
 .js-trailname:hover{
-    color: red;
+    color: #ffff66;
+}
+
+.js-trailname:active{
+    color: #ffff66;
 }
 
 
@@ -321,14 +324,14 @@ background-color:blue;
 /*--M A P     S T Y L I N G--*/         
 .map, #map{
     height: 500px;
-    width: 100%;
+    width: 95%;
     border: 2px solid grey;
-    margin-left: 20px;
     margin-top: 10px;
     margin-bottom: 10px;
     border-radius: 5px;
+    margin-right: auto;
+    margin-left: auto;
 }
-
 
 /*--End of Trails Results Section Styling--*/
 
@@ -369,18 +372,19 @@ footer{
     padding: 0px;
     margin: 0px;
     float: left;
+    margin-top: 3px;
 
 }
 
 .c2018{
-	font-size: 16px;
+	font-size: 14px;
 	margin-bottom: 0px;
-	padding-bottom: 0px;
- 
+	padding-bottom: 0px; 
 }
 
 .pipe{
 	margin-left: 6px;
+	font-size: 14px;
 }
 
 .ola{
@@ -424,3 +428,4 @@ footer{
 .googlemapslogo{
 	margin-top: 10px;	
 }
+/*--End of Footer Styling--*/

@@ -94,18 +94,26 @@ function getSunriseSunsetAPIData( lat, lng ){
 //Display Current Time & Sunrise/Sunset Times
 function displayTimeSunsetSunrise( suntimes ){
 	$('.js-time-sunrise-sunset').html(`
-		<div class="js-current-time-container col-4 parallaxtime">
-			<h3 class="js-current-time-text">${suntimes.moon_phase.current_time.hour}:${suntimes.moon_phase.current_time.minute}</h3>
-			<h3 class="suntimestext">Current Time</h3>
+		<div class="col-4">
+			<div class="js-current-time-container parallaxtime">
+				<h3 class="js-current-time-text">${suntimes.moon_phase.current_time.hour}:${suntimes.moon_phase.current_time.minute}</h3>
+				<h3 class="suntimestext">Current Time</h3>
+			</div>
 		</div>
-		<div class="js-sunrise-conatiner col-4 parallaxsunrise">	
-			<h3 class="js-sunrise-time">${suntimes.sun_phase.sunrise.hour}:${suntimes.sun_phase.sunrise.minute}</h3>
-			<h3 class="suntimestext">Sunrise</h3>
-		</div>	
-		<div class="js-sunset-conatiner col-4 parallaxsunset">	
-			<h3 class="js-sunset-time">${suntimes.sun_phase.sunset.hour}:${suntimes.sun_phase.sunset.minute}</h3>
-			<h3 class="suntimestext">Sunset</h3>
-		</div	
+		
+		<div class="col-4">
+			<div class="js-sunrise-conatiner parallaxsunrise">	
+				<h3 class="js-sunrise-time">${suntimes.sun_phase.sunrise.hour}:${suntimes.sun_phase.sunrise.minute}</h3>
+				<h3 class="suntimestext">Sunrise</h3>
+			</div>
+		</div>		
+
+		<div class="col-4">			
+			<div class="js-sunset-conatiner parallaxsunset">	
+				<h3 class="js-sunset-time">${suntimes.sun_phase.sunset.hour}:${suntimes.sun_phase.sunset.minute}</h3>
+				<h3 class="suntimestext">Sunset</h3>
+			</div>
+		</div>		
 		`
 	);
 }
@@ -227,7 +235,7 @@ function displayAllTrails( trails ){
 		$(".js-trails-container").append(`
 
 			<div class="eachtrailcontainer">
-				<div class="row">
+				<div class="row removepadding">
 					<div class="col-4">
 						<div class="js-trail">
 							<a href=${trail.url} target="_blank">
