@@ -2,7 +2,8 @@
 // . google places api
 // . wunderground api: sunset/sunrise | current time | 12 hr forecast.
 // . hiking trails api
-// . Commented out/Might use: Google Maps API 
+// . google maps api
+// . ui functions
 
 
 //G O O G L E    P L A C E S    C O D E//     
@@ -11,7 +12,6 @@ function initialize() {
    //initMap();
    initAutocomplete();
 }
-
 
 let placeSearch;
 let autocomplete; 
@@ -76,12 +76,12 @@ function fillInAddress(){
 
 //WUNDERGROUND API:  SUNSET/SUNRISE | CURRENT TIME | 12 HOUR FORECAST CODE//
 
-const SUNSETSUNRISE_ENDPOINT = 'http://api.wunderground.com/api/';
+const SUNSETSUNRISE_ENDPOINT = 'https://api.wunderground.com/api/';
 const SUNSETSUNRISE_API_KEY = '4259db9143b819d5';
 
 function getSunriseSunsetAPIData( lat, lng ){
-	$.getJSON( ("http://api.wunderground.com/api/4259db9143b819d5/astronomy/q/"+lat+","+lng+".json"), function( data ){
-	}).done(function ( data ){
+	$.getJSON( ("https://api.wunderground.com/api/4259db9143b819d5/astronomy/q/"+lat+","+lng+".json"))
+	.done(function ( data ){
 		//console.log( data )
 		displayTimeSunsetSunrise( data );
 		currentTimeImage( data );
@@ -165,7 +165,7 @@ function currentTimeImage( currentTime ){
  
 //Get Hourly Forecast Data
 function getHourlyAPIData( lat, lng ){
-	$.getJSON( ("http://api.wunderground.com/api/4259db9143b819d5/hourly/q/"+lat+","+lng+".json"))
+	$.getJSON( ("https://api.wunderground.com/api/4259db9143b819d5/hourly/q/"+lat+","+lng+".json"))
 		.done(function ( data ){
 		//console.log( data )
 		displayHourlyForecast( data);
@@ -193,7 +193,7 @@ function displayHourlyForecast( forecast ){
 }
 
 
-//<td class="condition">${forecast.hourly_forecast[i].condition}</td>
+
 
 //H I K I N G       P R O J E C T       C O D E//
 
@@ -208,8 +208,8 @@ function getHikingProjectData( lat, lng ){
 		maxResults: 500,
 		key: HIKINGPROJECT_API_KEY
 	}
-	$.getJSON(HIKINGPROJECT_ENDPOINT, params, function( data ){
-	}).done( function( data ){
+	$.getJSON(HIKINGPROJECT_ENDPOINT, params)
+	.done( function( data ){
 		//console.log( data );
 		displayAllTrails( data.trails );
 		numberOfTrailsFound( data );
@@ -303,10 +303,6 @@ function fillMissingTrailImg( trailImg ){
 }
 
 
-//pagination
-//for loop  for ex. 10 times
-
-
 
 //G O O G L E    M A P S    C O D E//
 
@@ -337,6 +333,11 @@ function initMap( lat, lng, index ){
 		animation: google.maps.Animation.DROP
 	});
 }
+
+
+
+
+//U I    C O D E//
 
 
 //On browser load, hide #box2 & #box3
@@ -397,7 +398,3 @@ $('#scroll-to-top').click(function () {
     // stop anchor link behavior
     return false;
 });
-
-
-
-

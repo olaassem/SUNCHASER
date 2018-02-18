@@ -103,7 +103,7 @@ body{
 #box2{
     height: 100vh;
     width: 100%;
-    background-color: white;
+    background-color: #EDEDED;
     opacity: .7;
     display: table;
     background-attachment: fixed;
@@ -198,6 +198,7 @@ body{
     border: solid 2px grey;
     box-shadow: 0 8px 6px -6px #2a2a2a;
     width:95%;
+    padding:0px;
 }
 
 .js-12hourforecast{
@@ -298,7 +299,7 @@ background-color:blue;
     text-decoration: none;
     margin-bottom: 5px;
     text-transform: uppercase;
-    color: white;
+    color: #C0ECAE;
 }
 
 .js-trailname:hover{
@@ -378,15 +379,14 @@ footer{
 
 }
 
-.c2018{
-	font-size: 14px;
-	margin-bottom: 0px;
-	padding-bottom: 0px; 
+.linkedin-logo{
+    width:11px;
+    height:11px;
+    margin-right: 3px;
 }
 
-.pipe{
-	margin-left: 6px;
-	font-size: 14px;
+.linkedin-logo:hover{
+    border: 1px solid #ffff66;    
 }
 
 .ola{
@@ -394,7 +394,7 @@ footer{
 	text-decoration: none;
 	color: #E2DEC6;
 	margin-left: 2px;
-	padding: 4px 8px;
+	padding: 4px 8px 4px 0px;
 	margin-bottom: 0px;
 }
 
@@ -402,6 +402,12 @@ footer{
 	color: #ffff66;
 	font-weight: bold;
 	
+}
+
+.c2018{
+    font-size: 16px;
+    margin-bottom: 0px;
+    padding-bottom: 0px; 
 }
 
 .api-logos{
