@@ -3,6 +3,8 @@
 <head>
 	<title>SUNCHASER</title>
 	<meta charset="UTF-8">
+	<meta name="description" content="SUNCHASER is the one-stop-shop app for golden hour running enthusiats everywhere."/>
+	<meta name="keywords" content="app, fitness, running, jogging, hiking, walking, trails, sunrise, sunset, golden hour, weather forecast, planning"/>
 	<meta name="author" content="Ola Assem"/>
 	
 	<!-- Responsive viewport tag, tells small screens that it's responsive -->
@@ -19,21 +21,17 @@
 
 	<!-- Font Awesome Icons -->
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-
 </head>
 
 
 <body>
-
 	<header role="banner" id="box1">
 		<div class="row">
 			<div class="col-12">
 				<div class="headerelements">
 		            <h1 class="logo">SUNCHASER</h1>
-		            <p class="intro">Plan today's golden hour run</p> 
-		            
-
-		            <form>
+		            <p class="intro">Plan today's golden hour run</p> 		         
+		            <form role="form" action="#" method ="#">
 		            	<fieldset> 
 		            		<legend class="sub-intro"> Search by city or address &amp; discover nearby trails, view local sunrise &amp; sunset times, &amp; the forecast for the next 12 hours.</legend> 
 					        	<div id="locationField">
@@ -46,8 +44,6 @@
 								</div>
 						</fieldset>	
 					</form>	
-
-
 				</div>	
 			</div>
 		</div>	
@@ -55,138 +51,104 @@
     
     <main role="main">
 
-    	<div id="boxInvalid" class="hidden">
+    	<section id="boxInvalid" class="hidden" role="region">
     		<div class="row">
         		<div class="col-12">
         			<p class="invalidsearch"> Invalid location. Please try again.</p>
         		</div>
         	</div>		
-
-    	</div>	
-
+    	</section>	
 
 
+        <section id="box2" class="hidden" role="region">
+        	<div class="row">
+        		<div class="col-12">
+        			<div class="row">
+        				<div class="col-12">
+							<div class="js-time-sunrise-sunset"></div>
+						</div>	
+					</div>
+					
+					<h2 class="twelve-hr-frcst-header">12-HOUR FORECAST</h2>
+					<div class="js-current-weather-container"> </div>
 
-
-
-
-	        <div id="box2" class="hidden">
-	        	<div class="row">
-	        		<div class="col-12">
-			            
-
-	        			<div class="row">
-	        				<div class="col-12">
-								<div class="js-time-sunrise-sunset"></div>
-							</div>	
-						</div>
-						
-
-
-
-						<h2 class="twelve-hr-frcst-header">12-HOUR FORECAST</h2>
-						<div class="js-current-weather-container"> </div>
-
-						
-						<div class="row removepadding">
-							<div class="col-12">
-								<div class="js-forecast-container row"> 
-									<table class="js-12hourforecast" border="1">
-							 			<thread>
-							 				<tr>
-								 				<th scope="col" colspan="1">TIME</th>
-								 				<th scope="col">CONDITION</th>
-								 				<th scope="col">TEMP</th>
-								 				<th scope="col">PRECIP</th>
-								 				<th scope="col">HUMIDITY</th>
-							 					<th scope="col">WIND</th>
-							 				</tr>	
-							 			</thread>
-							 			<tbody class="clearresults">
-							 			</tbody>
-		 							</table>
-								</div>
+					<div class="row removepadding">
+						<div class="col-12">
+							<div class="js-forecast-container row"> 
+								<table class="js-12hourforecast" border="1">
+						 			<thread>
+						 				<tr>
+							 				<th scope="col" colspan="1">TIME</th>
+							 				<th scope="col">CONDITION</th>
+							 				<th scope="col">TEMP</th>
+							 				<th scope="col">PRECIP</th>
+							 				<th scope="col">HUMIDITY</th>
+						 					<th scope="col">WIND</th>
+						 				</tr>	
+						 			</thread>
+						 			<tbody class="clearresults">
+						 			</tbody>
+	 							</table>
 							</div>
-						</div>  
-
-
-					</div>		
-				</div>			
-	        </div>
+						</div>
+					</div>  
+				</div>		
+			</div>			
+        </section>
         
 
-        <div id="box3" class="hidden">
-            	<div class="row">
-            		<div class="col-12">
-            			<h2 class="trailsfound"></h2>
-						<div class="js-trails-container">
-						<div>
-
-					</div>
+        <section id="box3" class="hidden" role="region">
+        	<div class="row">
+        		<div class="col-12">
+        			<h2 class="trailsfound"></h2>
+					<div class="js-trails-container"><div>
 				</div>
-        </div>
-
-
-
+			</div>
+        </section>
 
         <a id="scroll-to-top" href="#">TOP</a>
 
+	</main>
 
-    	</main>
-
-        <footer role='contentinfo' class="hidden">
-
-					<div class="row">
-						<div class="col-12">
-							<div class="author-date">
-								<p class="c2018">
-									<a class="github-link" href='https://github.com/olaassem/' target='_blank'>
-										<img class="github-logo" src='https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png' alt="github logo">
-									</a>
-									
-									<a class='linkedin-link' href="https://www.linkedin.com/in/ola-assem-7404a44" target="_blank" class="ola">
-										<img class="linkedin-logo" src="https://cdn1.iconfinder.com/data/icons/logotypes/32/square-linkedin-512.png" alt="linkedin logo">
-									</a>
-									
-									Ola Assem &copy; 2018
-								</p>
-							</div>
-							
-							<div class="api-logos">
-
-								<a href="https://www.wunderground.com/" target="_blank">
-									<img class="wundergroundlogo" src="https://icons.wxug.com/logos/PNG/wundergroundLogo_4c.png" alt="Wunderground Logo"/>
-								</a>
-								<a href="https://www.hikingproject.com/" target="_blank">
-		  							<img class="hikingprojectlogo" src="https://www.rei.com/blog/wp-content/uploads/2016/06/hikingprojectlogo.png" alt="Hiking Projoct Logo"/>
-								</a>
-
-								<a href="https://developers.google.com/maps/" target="_blank">
-		  							<img class="googlemapslogo" src="https://www.gstatic.com/images/branding/product/1x/maps_64dp.png" alt="Google Maps Logo"/>
-								</a>
-							</div>	
-						</div>
-					</div>
-		</footer>	
-
-
-
+    <footer role='contentinfo' class="hidden">
+		<div class="row">
+			<div class="col-12">
+				<div class="author-date">
+					<p class="c2018">
+						<a class="github-link" href='https://github.com/olaassem/' target='_blank'>
+							<img class="github-logo" src='https://assets-cdn.github.com/images/modules/logos_page/GitHub-Mark.png' alt="github logo">
+						</a>
+						<a class='linkedin-link' href="https://www.linkedin.com/in/ola-assem-7404a44" target="_blank" class="ola">
+							<img class="linkedin-logo" src="https://cdn1.iconfinder.com/data/icons/logotypes/32/square-linkedin-512.png" alt="linkedin logo">
+						</a>
+						Ola Assem &copy; 2018
+					</p>
+				</div>
+				
+				<div class="api-logos">
+					<a href="https://www.wunderground.com/" target="_blank">
+						<img class="wundergroundlogo" src="https://icons.wxug.com/logos/PNG/wundergroundLogo_4c.png" alt="Wunderground Logo"/>
+					</a>
+					<a href="https://www.hikingproject.com/" target="_blank">
+							<img class="hikingprojectlogo" src="https://www.rei.com/blog/wp-content/uploads/2016/06/hikingprojectlogo.png" alt="Hiking Projoct Logo"/>
+					</a>
+					<a href="https://developers.google.com/maps/" target="_blank">
+							<img class="googlemapslogo" src="https://www.gstatic.com/images/branding/product/1x/maps_64dp.png" alt="Google Maps Logo"/>
+					</a>
+				</div>	
+			</div>
+		</div>
+	</footer>	
 
 	<!-- jQuery Script -->
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
 	integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
 	crossorigin="anonymous"></script>
 
-
 	<!-- JavaScript Script -->
 	 <script type="text/javascript" src="index.js"></script>
 
-
    <!--Trail  Google Map Script-->
 	<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyA6ECb06GHjgfRQjrOJKy6tQqScBimbFmA&libraries=places&callback=initialize" async defer></script>
-
-
-
 </body>
-
 </html>
