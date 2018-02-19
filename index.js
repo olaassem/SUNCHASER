@@ -43,6 +43,7 @@ function codeAddress(address){
 	//in that order.	
 	}, function( results, status ){
 		if (status === 'OK') {
+			$('#boxInvalid').hide();
 	// This is the lat and lng results[0].geometry.location
 	//The GeocoderResult object represents a single geocoding result.
 	//"geometry" contains the following information:
@@ -62,8 +63,10 @@ function codeAddress(address){
       		getHikingProjectData( queryLatitude, queryLongitude );
       		//initMap( queryLatitude, queryLongitude );
 
-    	} else {
-    		alert('Geocode was not successful for the following reason: ' + status);
+    	} if (status === 'ZERO_RESULTS') {
+    		$('#box2').hide();
+    		$('#box3').hide();
+    		$('#boxInvalid').show();
     	}
   	});
 }
@@ -343,6 +346,7 @@ function initMap( lat, lng, index ){
 //On browser load, hide #box2 & #box3
 //Will be triggered after CSS loads
 function init(){
+	$('#boxInvalid').hide();
 	$('#box2').hide();
 	$('#box3').hide();
 }
@@ -364,8 +368,7 @@ $('#locationField').on('click', '#searchbutton', function(){
 $('#autocomplete').keyup(function( event ) {
     if( event.keyCode === 13 ) {  // the ENTER key code
         $('#box2').show();
-    	$('#box3').show();
-    	//$('footer').removeClass('hidden');	
+    	$('#box3').show();	
     	$('html, body').animate({
         	scrollTop: $("#box2").offset().top
     	}, 2100);

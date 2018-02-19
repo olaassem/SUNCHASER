@@ -13,6 +13,7 @@ body{
     margin: 0;
     padding: 0;
 } 
+
 /*--End of Universal Styling--*/
 
 
@@ -100,6 +101,22 @@ body{
 }
 
 /*--End of Header Styling--*/
+
+
+/*No matching locations found Styling*/
+#boxInvalid{
+    height: 30vh;
+    width: 100%;
+    background-color: black;
+    opacity: 0.8;
+    background-size: cover;
+    display: table;
+    background-attachment: fixed;
+}
+
+.invalidsearch{
+    color: white;
+}
 
 
 
@@ -272,20 +289,6 @@ background-color:blue;
     margin-left: auto;
     padding-left: 15px;
 }
-
-/*
-.js-trail {
-    width: 300px;
-    margin-right: auto;
-    margin-left: auto;
-    TEXT-ALIGN: center;
-    background-color: blue;
-    padding: 5px;
-    margin-top: 10px;
-    margin-bottom: 10px;
-    border-radius: 5px;
-}
-*/
 
 .crop {
 	height: 200px;
