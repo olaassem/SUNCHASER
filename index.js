@@ -123,6 +123,7 @@ function displayTimeSunsetSunrise( suntimes ){
 function currentTimeImage( currentTime ){
 	switch (currentTime.moon_phase.current_time.hour) {
 		//evening
+		case '18':
 		case '19': 
 		case '20':
 		case '21':
@@ -156,7 +157,6 @@ function currentTimeImage( currentTime ){
 		case '15':
 		case '16':
 		case '17':
-		case '18':
 			$('.parallaxtime').css('background-image', 'url(http://www.wallpapers13.com/wp-content/uploads/2016/03/Lake-sun-rays-clear-lake-water-evaporation-from-the-green-forest-the-surrounding-mountains-sky-915x515.jpg)');
 			break;
 	}
@@ -249,7 +249,7 @@ function displayAllTrails( trails ){
 							</div>	
 							<h3 class="js-traillength">${trail.length} miles</h3>
 							<p class="js-traildifficulty">${trailDifficultyLevel}</p>
-							<p class="js-trailascentdescent">${trail.ascent}' Ascent     ${trail.descent}' Descent</p>
+							<p class="js-trailascentdescent">${trail.ascent}' Ascent &ensp; ${trail.descent}' Descent</p>
 							<p class="js-trailsummary">${trail.summary}</p>
 						</div>
 					</div>
