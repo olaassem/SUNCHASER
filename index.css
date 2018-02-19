@@ -259,7 +259,7 @@ background-color:blue;
 
 /*--Trails Results Section Styling--*/
 #box3{
-    height: 100vh;
+    height: auto;
     width: 100%;
     background-color: lightgrey;
     background-size: cover;

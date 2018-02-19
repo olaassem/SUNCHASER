@@ -226,7 +226,13 @@ function getHikingProjectData( lat, lng ){
 
 //Display number of trails found
 function numberOfTrailsFound( trails ){
-	$('.trailsfound').html(`${trails.trails.length} TRAILS FOUND`);
+	console.log(trails.trails.length);
+	if(trails.trails.length === 1){
+		$('.trailsfound').html(`${trails.trails.length} TRAIL FOUND`);
+	}
+	else{
+		$('.trailsfound').html(`${trails.trails.length} TRAILS FOUND`);
+	}	
 }
 
 
