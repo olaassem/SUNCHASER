@@ -340,24 +340,32 @@ background-color:blue;
     border-radius: 6px;
 }
 
+.trailnamemargin{
+    padding-left: 5px;
+}
+
 .js-trailname{
 	line-height: 101%;
     font-size: 25px;
     text-decoration: none;
     margin-bottom: 5px;
     text-transform: uppercase;
-    color: #FFF2B0;
+    color: #C0ECAE;
+    text-shadow: 1px 1px 9px rgba(0,0,0,0.7);
 }
 
 .js-trailname:hover{
-    color: #C0ECAE;
+    color: #f6f6a5;
     cursor: pointer;
 }
 
 .js-trailname:active{
-    color: #C0ECAE;
+    color: #f6f6a5;
 }
 
+.js-traillocation{
+    padding-left: 6px;
+}
 
 .js-traillength,
 .js-traildifficulty,
@@ -365,6 +373,7 @@ background-color:blue;
 .js-trailsummary{
     margin-bottom: 10px;
     margin-top: 10px;
+    padding-left: 6px;
 }
 
 

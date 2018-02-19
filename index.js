@@ -249,7 +249,7 @@ function displayAllTrails( trails ){
 					<div class="col-4">
 						<div class="js-trail">
 							<a href=${trail.url} target="_blank">
-								<h3 class="js-trailname">${trail.name}</h3>
+								<h3 class="js-trailname"> <i class="fa fa-map-signs" aria-hidden="true"></i><span class="trailnamemargin">${trail.name}</span></h3>
 							</a>
 							<p class="js-traillocation">${trail.location}</p>
 							<div class="crop"
