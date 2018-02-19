@@ -69,6 +69,9 @@ body{
     width: 100%;
     text-shadow: 1px 2px 1px rgba(128,128,128,0.7);
     margin-top: 0px;
+    max-width: 500px;
+    margin-right: auto;
+    margin-left: auto;
 }
 
 

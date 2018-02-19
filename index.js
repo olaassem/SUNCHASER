@@ -359,28 +359,36 @@ function init(){
 }
 init();
 
-
-
-//Animate on submit button
+//Check for input and animate HTML on submit button
 $('#locationField').on('click', '#searchbutton', function(){
+	if($('#autocomplete').val() === ""){
+        alert('Please enter an address, city, or trail name.');
+        return false;
+    } 
+    else{
 		$('#box2').show();
 		$('#box3').show();
     	$('html, body').animate({
         	scrollTop: $("#box2").offset().top
     	}, 2100);
+    }	
 });
 
-
-//Animate HTML on press ENTER key event
+//Check for input and animate HTML on press ENTER key event
 $('#autocomplete').keyup(function( event ) {
-    if( event.keyCode === 13 ) {  // the ENTER key code
-        $('#box2').show();
-    	$('#box3').show();	
+    if( event.keyCode === 13 && $('#autocomplete').val() === ""){
+        alert('Please enter an address, city, or trail name.');
+        return false;
+	} 
+	else if( event.keyCode === 13 ){
+		$('#box2').show();
+		$('#box3').show();
     	$('html, body').animate({
         	scrollTop: $("#box2").offset().top
-    	}, 2100);
-    }
+	    }, 2100);
+	}	
 });
+
 
 
 //Scroll-to-top button function
