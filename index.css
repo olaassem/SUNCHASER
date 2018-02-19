@@ -75,6 +75,10 @@ body{
 }
 
 
+fieldset{
+    border:none;
+}
+
 #locationField{
     color:white;
     margin: 0px;

@@ -25,38 +25,44 @@
 
 <body>
 
-		<header role="banner" id="box1">
-			<div class="row">
-				<div class="col-12">
-					<div class="headerelements">
-			            <h1 class="logo">SUNCHASER</h1>
-			            <p class="intro">Plan today's golden hour run</p> 
-			            <p class="sub-intro"> Search by city or address &amp; discover nearby trails, view local sunrise &amp; sunset times, &amp; the forecast for the next 12 hours.</p>  
-			        	<div id="locationField">
-							<input id="autocomplete" required type="text" placeholder="e.g. Sydney NSW, Australia"/>
-							<div class="row">
-								<div class="col-12">
-									<button type="submit" id="searchbutton">DISCOVER</button>
+	<header role="banner" id="box1">
+		<div class="row">
+			<div class="col-12">
+				<div class="headerelements">
+		            <h1 class="logo">SUNCHASER</h1>
+		            <p class="intro">Plan today's golden hour run</p> 
+		            
+
+		            <form>
+		            	<fieldset> 
+		            		<legend class="sub-intro"> Search by city or address &amp; discover nearby trails, view local sunrise &amp; sunset times, &amp; the forecast for the next 12 hours.</legend> 
+					        	<div id="locationField">
+									<input id="autocomplete" type="text" placeholder="e.g. Sydney NSW, Australia"/>
+									<div class="row">
+										<div class="col-12">
+											<button type="submit" id="searchbutton">DISCOVER</button>
+										</div>
+									</div>		
 								</div>
-							</div>		
-						</div>
-					</div>	
-				</div>
-			</div>	
-        </header>
-        
-        <main role="main">
+						</fieldset>	
+					</form>	
 
 
+				</div>	
+			</div>
+		</div>	
+    </header>
+    
+    <main role="main">
 
-        	<div id="boxInvalid" class="hidden">
-        		<div class="row">
-	        		<div class="col-12">
-	        			<p class="invalidsearch"> Invalid location. Please try again.</p>
-	        		</div>
-	        	</div>		
+    	<div id="boxInvalid" class="hidden">
+    		<div class="row">
+        		<div class="col-12">
+        			<p class="invalidsearch"> Invalid location. Please try again.</p>
+        		</div>
+        	</div>		
 
-        	</div>	
+    	</div>	
 
 
 

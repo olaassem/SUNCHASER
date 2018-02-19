@@ -9,7 +9,6 @@
 //G O O G L E    P L A C E S    C O D E//     
 
 function initialize() {
-   //initMap();
    initAutocomplete();
 }
 
@@ -359,8 +358,10 @@ function init(){
 }
 init();
 
-//Check for input and animate HTML on submit button
-$('#locationField').on('click', '#searchbutton', function(){
+
+//Check for input and animate HTML on submit event
+$('form').submit('#searchbutton', function( event ){
+	event.preventDefault()
 	if($('#autocomplete').val() === ""){
         alert('Please enter an address, city, or trail name.');
         return false;
@@ -373,22 +374,6 @@ $('#locationField').on('click', '#searchbutton', function(){
     	}, 2100);
     }	
 });
-
-//Check for input and animate HTML on press ENTER key event
-$('#autocomplete').keyup(function( event ) {
-    if( event.keyCode === 13 && $('#autocomplete').val() === ""){
-        alert('Please enter an address, city, or trail name.');
-        return false;
-	} 
-	else if( event.keyCode === 13 ){
-		$('#box2').show();
-		$('#box3').show();
-    	$('html, body').animate({
-        	scrollTop: $("#box2").offset().top
-	    }, 2100);
-	}	
-});
-
 
 
 //Scroll-to-top button function
