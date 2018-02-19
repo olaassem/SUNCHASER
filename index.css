@@ -105,7 +105,7 @@ body{
 
 /*No matching locations found Styling*/
 #boxInvalid{
-    height: 30vh;
+    height: 10vh;
     width: 100%;
     background-color: black;
     opacity: 0.8;
@@ -116,6 +116,8 @@ body{
 
 .invalidsearch{
     color: white;
+    text-align: center;
+    font-size: 1.5em;
 }
 
 

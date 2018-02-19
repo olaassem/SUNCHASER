@@ -63,10 +63,11 @@ function codeAddress(address){
       		getHikingProjectData( queryLatitude, queryLongitude );
       		//initMap( queryLatitude, queryLongitude );
 
-    	} if (status === 'ZERO_RESULTS') {
+    	} else {
+    		console.log(status);
+    		$('#boxInvalid').show();
     		$('#box2').hide();
     		$('#box3').hide();
-    		$('#boxInvalid').show();
     	}
   	});
 }
