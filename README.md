@@ -16,7 +16,7 @@
 
 
 
-#### Location's Current, Sunrise, & Sunrise times, & 12-Hour Forecast
+#### Location's Current, Sunrise, Sunrise Times, & 12-Hour Forecast
 
 ![3times&forecast.png](screenshots/3times&forecast.png)
 
@@ -33,4 +33,4 @@
 * HTML5
 * CSS3
 * JavaScript
-*jQuery
+* jQuery
