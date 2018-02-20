@@ -362,11 +362,14 @@ init();
 //Check for input and animate HTML on submit event
 $('form').submit('#searchbutton', function( event ){
 	event.preventDefault()
+	const outputElem = $('.js-output'); 
+    
 	if($('#autocomplete').val() === ""){
         alert('Please enter an address, city, or trail name.');
         return false;
     } 
     else{
+    	outputElem.prop('hidden', false);
 		$('#box2').show();
 		$('#box3').show();
     	$('html, body').animate({
