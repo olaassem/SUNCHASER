@@ -12,6 +12,12 @@ A one-stop-shop web application for planning your golden hour runs. Users can se
 
 
 
+## Demo
+
+- [Live Demo](https://olaassem.github.io/SUNCHASER)
+
+
+
 ## Screenshots
 
 #### Landing Page
@@ -43,12 +49,6 @@ A one-stop-shop web application for planning your golden hour runs. Users can se
 ![trails and maps](screenshots/4trailsfound.png)
 
 ![mobile trails info](screenshots/9mobiletrailsfound.png) ![mobile trails map](screenshots/10mobiletrailsmap.png)
-
-
-
-## Demo
-
-- [Live Demo](https://olaassem.github.io/SUNCHASER)
 
 
 
