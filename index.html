@@ -33,9 +33,9 @@
 		            <p class="intro">Plan today's golden hour run</p> 		         
 		            <form role="form" action="#" method ="#">
 		            	<fieldset> 
-		            		<legend class="sub-intro"> Search by city or address &amp; discover nearby trails, view local sunrise &amp; sunset times, &amp; the forecast for the next 12 hours.</legend> 
+		            		<legend class="sub-intro"> Search by city or address to discover nearby trails, view local sunrise &amp; sunset times, &amp; the forecast for the next 12 hours.</legend> 
 					        	<div id="locationField">
-									<input id="autocomplete" type="text" placeholder="e.g. Sydney NSW, Australia" required/>
+									<input id="autocomplete" type="text" placeholder="e.g. Sydney NSW, Australia" required="" oninvalid="this.setCustomValidity('Please enter an address, city, or trail name.')" oninput="setCustomValidity('')" />
 									<div class="row">
 										<div class="col-12">
 											<button type="submit" id="searchbutton">DISCOVER</button>

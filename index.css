@@ -1,6 +1,5 @@
 
 /*--Universal Styling--*/
-
 *{
 	box-sizing: border-box;
 	-webkit-box-sizing: border-box; /* Safari/Chrome, other WebKit */
@@ -13,9 +12,7 @@ body{
     margin: 0;
     padding: 0;
 } 
-
 /*--End of Universal Styling--*/
-
 
 
 /*--Header Styling--*/
@@ -74,7 +71,6 @@ body{
     margin-left: auto;
 }
 
-
 fieldset{
     border:none;
 }
@@ -119,7 +115,7 @@ fieldset{
 	top: 2px;
 }
 
-/*placeholder text color*/
+/*--Placeholder text color--*/
 *::-webkit-input-placeholder {
     color: #939393;
 }
@@ -135,11 +131,11 @@ fieldset{
     /* IE 10+ */
     color: #939393;
 }
-
+/*--End of placeholder text color--*/
 /*--End of Header Styling--*/
 
 
-/*No matching locations found Styling*/
+/*--No matching locations found Styling--*/
 #boxInvalid{
     height: 10vh;
     width: 100%;
@@ -155,11 +151,10 @@ fieldset{
     text-align: center;
     font-size: 1.5em;
 }
-
+/*--End of no matching locations found Styling--*/
 
 
 /*--Time & Weather Results Sections Styling--*/
-
 #box2{
     height: 100vh;
     width: 100%;
@@ -170,7 +165,6 @@ fieldset{
 }
 
 /*--Current Time, Sunset, & Sunrise Boxes Styling--*/ 
-
 .js-time-sunrise-sunset{
     margin-top: 50px;
     padding: 0px;
@@ -187,8 +181,7 @@ fieldset{
     padding: 0px;
     margin-right: auto;
     margin-left: auto;
-    margin-bottom: 15px
-    
+    margin-bottom: 15px; 
 }
 
 .parallaxtime{
@@ -238,12 +231,10 @@ fieldset{
     font-size: 18px;
     text-shadow: 2px 4px 3px rgba(0,0,0,0.7);
 }
-
 /*--End of Current Time, Sunset, & Sunrise Boxes Styling--*/
 
 
 /*12 Hour Forecast Results Styling--*/
-
 .twelve-hr-frcst-header{
 	margin-top: 40px;
     text-align: center;
@@ -277,17 +268,12 @@ td{
     text-align: center; 
 }
 
-
 tr{
     border-bottom: 1px solid grey;
     border-top: 1px solid grey;
     border-collapse: collapse;
     text-align: center;
 }​
-
-th:nth-child(odd){ 
-background-color:blue; 
-}
 
 .js-forecast-icon{
 }
@@ -330,6 +316,7 @@ background-color:blue;
     margin-right: auto;
     margin-left: auto;
     padding-left: 15px;
+    margin-bottom: 15px;
 }
 
 .crop {
@@ -344,7 +331,8 @@ background-color:blue;
     border-radius: 6px;
 }
 
-.trailnamemargin{
+.trailnamemargin,
+.js-learn-more{
     padding-left: 5px;
 }
 
@@ -352,10 +340,11 @@ background-color:blue;
 	line-height: 101%;
     font-size: 25px;
     text-decoration: none;
-    margin-bottom: 5px;
+    margin-bottom: 10px;
     text-transform: uppercase;
-    color: #C0ECAE;
+    color: white;
     text-shadow: 1px 1px 9px rgba(0,0,0,0.7);
+    padding-left: 5px;
 }
 
 .js-trailname:hover{
@@ -363,12 +352,13 @@ background-color:blue;
     cursor: pointer;
 }
 
-.js-trailname:active{
-    color: #f6f6a5;
-}
-
 .js-traillocation{
     padding-left: 6px;
+    margin-top: 5px;
+}
+
+.js-traildifficulty{
+    font-style: italic;
 }
 
 .js-traillength,
@@ -380,9 +370,16 @@ background-color:blue;
     padding-left: 6px;
 }
 
+.js-learn-more{
+    font-size: 15px;
+    color: #C0ECAE;
+    padding-left: 6px;
+    padding-bottom: 10px;
+}   
 
-.js-traildifficulty{
-    font-style: italic;
+.js-learn-more:hover{
+    color: #f6f6a5;
+    cursor: pointer;
 }
 
 /*--M A P     S T Y L I N G--*/         

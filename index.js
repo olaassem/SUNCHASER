@@ -242,27 +242,26 @@ function displayAllTrails( trails ){
 		const trailDifficultyLevel = displayTrailDifficulty( trail.difficulty );
 		const fillerTrailImg = fillMissingTrailImg( trail.imgMedium );
 		$(".js-trails-container").append(`
-
 			<div class="eachtrailcontainer">
 				<div class="row removepadding">
 					<div class="col-4">
 						<div class="js-trail">
 							<a href=${trail.url} target="_blank">
-								<h3 class="js-trailname"> <i class="fa fa-map-signs" aria-hidden="true"></i><span class="trailnamemargin">${trail.name}</span></h3>
+								<h3 class="js-trailname">${trail.name}</h3>
 							</a>
 							<p class="js-traillocation">${trail.location}</p>
-							<div class="crop"
-								<a href=${trail.url} target="_blank">
-									<img class="js-trailimg" src=${fillerTrailImg} alt="image of trail"></img>
-								</a>
+							<div class="crop">
+								<img class="js-trailimg" src=${fillerTrailImg} alt="image of trail"></img>
 							</div>	
 							<h3 class="js-traillength">${trail.length} miles</h3>
 							<p class="js-traildifficulty">${trailDifficultyLevel}</p>
 							<p class="js-trailascentdescent">${trail.ascent}' Ascent &ensp; ${trail.descent}' Descent</p>
 							<p class="js-trailsummary">${trail.summary}</p>
+							<a class="js-learn-more" href=${trail.url} target="_blank">
+								<i class="fa fa-info-circle" aria-hidden="true"></i><span class="trailnamemargin">Learn more</span>
+							</a>
 						</div>
 					</div>
-
 					<div class="col-8">
 						<div id="map${index}" class="map"></div>
 					</div>
@@ -362,20 +361,13 @@ init();
 //Check for input and animate HTML on submit event
 $('form').submit('#searchbutton', function( event ){
 	event.preventDefault()
-	const outputElem = $('.js-output'); 
-    
-	if($('#autocomplete').val() === ""){
-        alert('Please enter an address, city, or trail name.');
-        return false;
-    } 
-    else{
-    	outputElem.prop('hidden', false);
-		$('#box2').show();
-		$('#box3').show();
-    	$('html, body').animate({
-        	scrollTop: $("#box2").offset().top
-    	}, 2100);
-    }	
+	const outputElem = $('.js-output');  
+   	outputElem.prop('hidden', false);
+	$('#box2').show();
+	$('#box3').show();
+	$('html, body').animate({
+    	scrollTop: $("#box2").offset().top
+	}, 2100);	
 });
 
 
