@@ -8,7 +8,7 @@
 
 //G O O G L E    P L A C E S    C O D E//     
 
-function initialize() {
+function initialize(){
    initAutocomplete();
 }
 
@@ -16,8 +16,8 @@ let placeSearch;
 let autocomplete; 
 let geocoder;
 
+//Access the Google Maps API geocoding service
 function initAutocomplete(){
-	//Access the Google Maps API geocoding service
 	geocoder = new google.maps.Geocoder();
 	autocomplete = new google.maps.places.Autocomplete(
     (document.getElementById('autocomplete')), {
@@ -27,41 +27,24 @@ function initAutocomplete(){
     autocomplete.addListener('place_changed', fillInAddress);
 }
 
+//Get queried location lat and long and declare as variables
 function codeAddress(address){
-	//The Geocoder.geocode() method initiates a request to 
-	//the geocoding service, passing it a GeocoderRequest object 
-	//literal containing the input terms and a callback method 
-	//to execute upon receipt of the response.
 	geocoder.geocode({
-	//supply he GeocoderRequest object literal the "address"
-	//parameter which we want to geocode.
 		'address': address
-	//The Geocoding service requires a callback method to execute 
-	//upon retrieval of the geocoder's results. This callback should 
-	//pass two parameters to hold the results and a status code, 
-	//in that order.	
 	}, function( results, status ){
+		//if valid query input
 		if (status === 'OK') {
 			$('#boxInvalid').hide();
-	// This is the lat and lng results[0].geometry.location
-	//The GeocoderResult object represents a single geocoding result.
-	//"geometry" contains the following information:
-	//"location" contains the geocoded latitude,longitude value. 
-	//Note that we return this location as a LatLng object, not as a formatted string.
-			//console.log( results[0].geometry.location );
 
-	//Create new queryLatitude variable and assign latitude result to it 
-			let queryLatitude = results[0].geometry.location.lat();
-			//console.log(queryLatitude);
-	//Create new queryLongitude variable and assign longitude result to it 
+			let queryLatitude = results[0].geometry.location.lat(); 
 			let queryLongitude = results[0].geometry.location.lng();
-			//console.log(queryLongitude);
-	//Call api functions here and pass lat and lng parameters through them
+
+			//Call api functions and pass lat and lng params through them
 			getSunriseSunsetAPIData( queryLatitude, queryLongitude );
       		getHourlyAPIData( queryLatitude, queryLongitude );
       		getHikingProjectData( queryLatitude, queryLongitude );
-      		//initMap( queryLatitude, queryLongitude );
 
+      	//if invalid query input
     	} else {
     		console.log(status);
     		$('#boxInvalid').show();
@@ -117,8 +100,7 @@ function displayTimeSunsetSunrise( suntimes ){
 				<h3 class="suntimestext">Sunset</h3>
 			</div>
 		</div>		
-		`
-	);
+	`);
 }
 
 
@@ -194,8 +176,6 @@ function displayHourlyForecast( forecast ){
 		`)
 	}
 }
-
-
 
 
 //H I K I N G       P R O J E C T       C O D E//
@@ -318,12 +298,8 @@ function fillMissingTrailImg( trailImg ){
 //const GOOGLE_MAPS_ENDPNT = 'https://maps.googleapis.com/maps/api/js';
 //const GOOGLE_MAPS_API_KEY = 'AIzaSyA6ECb06GHjgfRQjrOJKy6tQqScBimbFmA';
 
-
+//Create map
 function initMap( lat, lng, index ){
-	// set a new variable called map and set it to a new google.map object
-	// since we already set the google maps script in index.html
-	// we can say new google.maps --> do different things
-	// we use .Map to get the map
 	let location ={
 		lat: parseFloat(lat),
 		lng: parseFloat(lng)
@@ -347,9 +323,7 @@ function initMap( lat, lng, index ){
 
 //U I    C O D E//
 
-
-//On browser load, hide #box2 & #box3
-//Will be triggered after CSS loads
+//On browser load, hide boxInvalid, box2, & box3
 function init(){
 	$('#boxInvalid').hide();
 	$('#box2').hide();
@@ -358,7 +332,7 @@ function init(){
 init();
 
 
-//Check for input and animate HTML on submit event
+//Animate HTML and results on submit event
 $('form').submit('#searchbutton', function( event ){
 	event.preventDefault()
 	const outputElem = $('.js-output');  
@@ -372,13 +346,9 @@ $('form').submit('#searchbutton', function( event ){
 
 
 //Scroll-to-top button function
-// 1. lets first listen for the scroll event
 $(window).scroll(function(){
-    // top value in this case 0
     let wScroll = $(this).scrollTop();
-    // determine when to show button
     let showScrollButton = 200;
-    // fadein / fadeout back to  top button
     if (wScroll > showScrollButton) {
         $('#scroll-to-top').fadeIn();
     } else {
@@ -390,9 +360,7 @@ $(window).scroll(function(){
 //Scroll-to-top on-click function
 $('#scroll-to-top').click(function () {
     $('body,html').animate({
-      //scroll to top of window position
       scrollTop: 0
     }, 2000);
-    // stop anchor link behavior
     return false;
 });
