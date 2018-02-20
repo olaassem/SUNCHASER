@@ -16,25 +16,33 @@ A one-stop-shop web application for planning your golden hour runs. Users can se
 
 #### Landing Page
 
-![1landingpg](screenshots/1landingpg.png)
+![landing page](screenshots/1landingpg.png)
+
+![mobile landing page](screenshots/5mobilelandingpg.png)
 
 
 
 #### Location Search
 
-![2locationsearch.png](screenshots/2locationsearch.png)
+![location search](screenshots/2locationsearch.png)
+
+![mobile search location](screenshots/6mobilelocationsearch.png)
 
 
 
 #### Location's Current, Sunrise, Sunrise Times, & 12-Hour Forecast
 
-![3times&forecast.png](screenshots/3times&forecast.png)
+![current, sunrise, sunset times and 12-hour forecast](screenshots/3times&forecast.png)
+
+![mobile current, sunrise, sunset times](screenshots/7mobiletimes.png) ![mobile 12-hour forecast](screenshots/8mobileforecast.png)
 
 
 
 #### Trails Info & Maps
 
-![4trailsfound.png](screenshots/4trailsfound.png)
+![trails and maps](screenshots/4trailsfound.png)
+
+![mobile trails info](screenshots/9mobiletrailsfound.png) ![mobile trails map](screenshots/10mobiletrailsmap.png)
 
 
 
