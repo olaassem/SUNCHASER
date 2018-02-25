@@ -66,3 +66,16 @@ A one-stop-shop web application for planning your golden hour runs. Users can se
 * [Google Maps API](https://developers.google.com/maps/)
 * [Wunderground API](https://www.wunderground.com/weather/api/d/docs?d=index)
 * [Hiking Project API](https://www.hikingproject.com/data)
+
+
+
+## Acknowledgements
+
+* Jon Oyanguren
+* Koesmanto Bong
+
+
+
+## Contributor
+
+* Ola Assem
