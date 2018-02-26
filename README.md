@@ -72,7 +72,7 @@ A one-stop-shop web application for planning your golden hour runs. Users can se
 ## Acknowledgements
 
 * Jon Oyanguren
-* Koesmanto Bong
+* [Koesmanto Bong](http://koesbong.com/)
 
 
 
