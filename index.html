@@ -6,10 +6,11 @@
 	<meta name="description" content="SUNCHASER is the one-stop-shop app for golden hour running enthusiats everywhere."/>
 	<meta name="keywords" content="app, fitness, running, jogging, hiking, walking, trails, sunrise, sunset, golden hour, weather forecast, planning"/>
 	<meta name="author" content="Ola Assem"/>
-	
+	<link rel="shortcut icon" type="image/png" href="./favicon.png">
+
 	<!-- Responsive viewport tag, tells small screens that it's responsive -->
   	<meta name="viewport" content="width=device-width, initial-scale=1">
-	
+
 	<!-- Stylesheets -->
 	<link rel="stylesheet" type="text/css" href="grid.css"/>
 	<link rel="stylesheet" type="text/css" href="index.css"/>
@@ -30,25 +31,25 @@
 			<div class="col-12">
 				<div class="headerelements">
 		            <h1 class="logo">SUNCHASER</h1>
-		            <p class="intro">Plan today's golden hour run</p> 		         
+		            <p class="intro">Plan today's golden hour run</p>
 		            <form role="form" action="#" method ="#">
-		            	<fieldset> 
-		            		<legend class="sub-intro"> Search by city or address to discover nearby trails, view local sunrise &amp; sunset times, &amp; the forecast for the next 12 hours.</legend> 
+		            	<fieldset>
+		            		<legend class="sub-intro"> Search by city or address to discover nearby trails, view local sunrise &amp; sunset times, &amp; the forecast for the next 12 hours.</legend>
 					        	<div id="locationField">
 									<input id="autocomplete" type="text" placeholder="e.g. Sydney, Australia" required="" oninvalid="this.setCustomValidity('Please enter an address, city, or trail name.')" oninput="setCustomValidity('')" />
 									<div class="row">
 										<div class="col-12">
 											<button type="submit" id="searchbutton">DISCOVER</button>
 										</div>
-									</div>		
+									</div>
 								</div>
-						</fieldset>	
-					</form>	
-				</div>	
+						</fieldset>
+					</form>
+				</div>
 			</div>
-		</div>	
+		</div>
     </header>
-    
+
     <main role="main" class="js-output" aria-live="assertive" hidden>
 
     	<section id="boxInvalid" class="hidden" role="region">
@@ -56,8 +57,8 @@
         		<div class="col-12">
         			<p class="invalidsearch"> Invalid location. Please try again.</p>
         		</div>
-        	</div>		
-    	</section>	
+        	</div>
+    	</section>
 
 
         <section id="box2" class="hidden" role="region">
@@ -66,15 +67,15 @@
         			<div class="row">
         				<div class="col-12">
 							<div class="js-time-sunrise-sunset"></div>
-						</div>	
+						</div>
 					</div>
-					
+
 					<h2 class="twelve-hr-frcst-header">12-HOUR FORECAST</h2>
 					<div class="js-current-weather-container"> </div>
 
 					<div class="row removepadding">
 						<div class="col-12">
-							<div class="js-forecast-container row"> 
+							<div class="js-forecast-container row">
 								<table class="js-12hourforecast" border="1">
 						 			<thread>
 						 				<tr>
@@ -84,18 +85,18 @@
 							 				<th scope="col">PRECIP</th>
 							 				<th scope="col">HUMIDITY</th>
 						 					<th scope="col">WIND</th>
-						 				</tr>	
+						 				</tr>
 						 			</thread>
 						 			<tbody class="clearresults">
 						 			</tbody>
 	 							</table>
 							</div>
 						</div>
-					</div>  
-				</div>		
-			</div>			
+					</div>
+				</div>
+			</div>
         </section>
-        
+
 
         <section id="box3" class="hidden" role="region">
         	<div class="row">
@@ -124,7 +125,7 @@
 						Ola Assem &copy; 2018
 					</p>
 				</div>
-				
+
 				<div class="api-logos">
 					<a href="https://www.wunderground.com/" target="_blank">
 						<img class="wundergroundlogo" src="https://icons.wxug.com/logos/PNG/wundergroundLogo_4c.png" alt="Wunderground Logo"/>
@@ -135,10 +136,10 @@
 					<a href="https://developers.google.com/maps/" target="_blank">
 							<img class="googlemapslogo" src="https://www.gstatic.com/images/branding/product/1x/maps_64dp.png" alt="Google Maps Logo"/>
 					</a>
-				</div>	
+				</div>
 			</div>
 		</div>
-	</footer>	
+	</footer>
 
 	<!-- jQuery Script -->
 	<script src="https://code.jquery.com/jquery-3.2.1.min.js"
