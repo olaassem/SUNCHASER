@@ -12,6 +12,12 @@ A one-stop-shop web application for planning your golden hour runs. Users can se
 
 
 
+## Demo
+
+- [Live Demo](https://olaassem.github.io/SUNCHASER)
+
+
+
 ## Screenshots
 
 #### Landing Page
@@ -46,12 +52,6 @@ A one-stop-shop web application for planning your golden hour runs. Users can se
 
 
 
-## Demo
-
-- [Live Demo](https://olaassem.github.io/SUNCHASER)
-
-
-
 ## Built With
 
 * HTML5
@@ -61,8 +61,21 @@ A one-stop-shop web application for planning your golden hour runs. Users can se
 
 
 
-## API Data
+## Powered By
 
 * [Google Maps API](https://developers.google.com/maps/)
 * [Wunderground API](https://www.wunderground.com/weather/api/d/docs?d=index)
 * [Hiking Project API](https://www.hikingproject.com/data)
+
+
+
+## Acknowledgements
+
+* Jon Oyanguren
+* [Koesmanto Bong](http://koesbong.com/)
+
+
+
+## Contributor
+
+* Ola Assem
