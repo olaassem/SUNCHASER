@@ -274,7 +274,7 @@ function displayTrailDifficulty(traildifflevel) {
     case 'blackBack':
       return 'Extremely Difficult: 20% grade, 15+" obstacles, many harder sections';
 
-    case '':
+    default:
       return 'No rating available';
   }
 }
