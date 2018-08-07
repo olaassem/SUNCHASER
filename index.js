@@ -248,7 +248,6 @@ function displayAllTrails(trails) {
   });
 }
 
-//
 
 //Replace trail difficulty color value with description text
 function displayTrailDifficulty(traildifflevel) {
@@ -279,11 +278,14 @@ function displayTrailDifficulty(traildifflevel) {
 
 //Replace empty trail images with a filler image
 function fillMissingTrailImg(trailImg) {
-  if (trailImg === "") {
-    return "https://upload.wikimedia.org/wikipedia/commons/2/22/Maudslay_running_trail_1.JPG";
-  } else {
-    return trailImg;
-  }
+  // if (trailImg === "") {
+  //   return "https://upload.wikimedia.org/wikipedia/commons/2/22/Maudslay_running_trail_1.JPG";
+
+  return trailImg || 'https://upload.wikimedia.org/wikipedia/commons/2/22/Maudslay_running_trail_1.JPG';
+
+  // } else {
+  //   return trailImg;
+  // }
 }
 
 
